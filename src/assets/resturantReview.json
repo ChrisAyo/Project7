@@ -1,0 +1,89 @@
+[
+    {    
+        "place_id":"Jacksbar",
+        "restaurantName": "Jacks bar",
+        "address": "123",
+        "lat": 51.512829,
+        "lng": -0.128001,
+        "ratings": [
+            {
+                "stars": 4,
+                "comment": "Great! But not many veggie options."
+            },
+            {
+                "stars": 5,
+                "comment": "My favorite restaurant!"
+            }
+        ]
+    },
+    {
+        "place_id": "Tom",
+        "restaurantName": "Tom's Bistro",
+        "address": "22 olam",
+        "lat": 51.512429,
+        "lng": -0.126896,
+        "ratings": [
+            {
+                "stars": 5,
+                "comment": "Tiny pizzeria next to Sacre Coeur!"
+            },
+            {
+                "stars": 3,
+                "comment": "Meh, it was fine."
+            }
+        ]
+    },
+    {
+        "place_id": "Baba",
+        "restaurantName": "Babalou",
+        "address": "4 Rue Lamarck, 75018 Paris",
+        "lat": 51.513951,
+        "lng": -0.122732,
+        "ratings": [
+            {
+                "stars": 5,
+                "comment": "Tiny pizzeria next to Sacre Coeur!"
+            },
+            {
+                "stars": 3,
+                "comment": "Meh, it was fine."
+            }
+        ]
+    },
+    {
+        "place_id": "Snap",
+        "restaurantName": "snap grab",
+        "address": "4 Rue Lamarck, 75018 london",
+        "lat": 51.5150861,
+        "lng": -0.1247871,
+        "ratings": [
+            {
+                "stars": 5,
+                "comment": "Tiny pizzeria next to Sacre Coeur!"
+            },
+            {
+                "stars": 3,
+                "comment": "Meh, it was fine."
+            }
+        ]
+    },
+    {   
+        "place_id": "haba",
+        "restaurantName": "habalabulo",
+        "address": "4 Rue Lamarck, 75018 Paris",
+        "lat": 51.510856,
+        "lng": -0.133633,
+        "ratings": [
+            {
+                "stars": 5,
+                "comment": "Tiny pizzeria next to Sacre Coeur!"
+            },
+            {
+                "stars": 3,
+                "comment": "Meh, it was fine."
+            }
+        ]
+    }
+]
+
+

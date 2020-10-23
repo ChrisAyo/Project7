@@ -1,0 +1,82 @@
+[
+    {
+        "restaurantName": "Jacks bar",
+        "address": "123",
+        "lat": 48.8737815,
+        "lng": 2.3501649,
+        "ratings": [
+            {
+                "stars": 4,
+                "comment": "Great! But not many veggie options."
+            },
+            {
+                "stars": 5,
+                "comment": "My favorite restaurant!"
+            }
+        ]
+    },
+    {
+        "restaurantName": "Tom's Bistro",
+        "address": "22 olam",
+        "lat": 48.8865035,
+        "lng": 2.3442197,
+        "ratings": [
+            {
+                "stars": 5,
+                "comment": "Tiny pizzeria next to Sacre Coeur!"
+            },
+            {
+                "stars": 3,
+                "comment": "Meh, it was fine."
+            }
+        ]
+    },
+    {
+        "restaurantName": "Babalou",
+        "address": "4 Rue Lamarck, 75018 Paris",
+        "lat": 48.8865035,
+        "lng": 2.3442197,
+        "ratings": [
+            {
+                "stars": 5,
+                "comment": "Tiny pizzeria next to Sacre Coeur!"
+            },
+            {
+                "stars": 3,
+                "comment": "Meh, it was fine."
+            }
+        ]
+    },
+    {
+        "restaurantName": "snap grab",
+        "address": "4 Rue Lamarck, 75018 Paris",
+        "lat": 48.8865035,
+        "lng": 2.3442197,
+        "ratings": [
+            {
+                "stars": 5,
+                "comment": "Tiny pizzeria next to Sacre Coeur!"
+            },
+            {
+                "stars": 3,
+                "comment": "Meh, it was fine."
+            }
+        ]
+    },
+    {
+        "restaurantName": "habalabulo",
+        "address": "4 Rue Lamarck, 75018 Paris",
+        "lat": 48.8865035,
+        "lng": 2.3442197,
+        "ratings": [
+            {
+                "stars": 5,
+                "comment": "Tiny pizzeria next to Sacre Coeur!"
+            },
+            {
+                "stars": 3,
+                "comment": "Meh, it was fine."
+            }
+        ]
+    }
+]
