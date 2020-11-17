@@ -49,7 +49,7 @@ export default {
     },
 
     mapCenter () {
-      return this.markers[1].position
+      // return this.markers[1].position this doesnt seem to make a diffrence ???
     }
   },
 

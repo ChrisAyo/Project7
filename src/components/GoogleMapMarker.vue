@@ -2,7 +2,6 @@
   <div>
   </div>
 </template>
-
 <script>
 
 // import { POINT_MARKER_ICON_CONFIG } from "@/constants/mapSettings";
@@ -20,15 +19,24 @@ export default {
     marker: {
       type: Object,
       required: true
+    },
+    infoWindow: {
+      type: Object,
+    }
+  },
+  data(){
+    return{
+      gMarker: null
     }
   },
 
   mounted () {
-    this.google.maps.Marker({
-      position: this.marker.position,
-      marker: this.marker,
-      map: this.map
-      // move all marker related content from Google map loader 
+    this.gMarker = new this.google.maps.Marker({
+      position: {lat: this.marker.lat, lng: this.marker.lng},
+      map: this.map 
+    })
+    this.gMarker.addListener('click', () => {
+          this.infoWindow.open(this.map, this.gMarker)
     })
   }
 }
