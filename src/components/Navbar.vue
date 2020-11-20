@@ -53,11 +53,5 @@ export default {
       }
     }
   }
-
-  //   data() {
-  //     return {
-  //       myJson: json
-  //     };
-  //   }
 }
 </script>
