@@ -1,14 +1,14 @@
 <template>
   <GoogleMapLoader
     :loaded="mapLoaded"
-    :mapConfig="{ center: {lat: 51.512829, lng: -0.128001}, zoom: 12 }"
+    :mapConfig="{ center: { lat: 51.512829, lng: -0.128001 }, zoom: 12 }"
     apiKey="AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk"
   >
     <template slot-scope="{ google, map }">
       <!-- {{ map }}
       {{ google }}-->
       <GoogleMapMarker
-        v-for="(marker,index) in markers"
+        v-for="(marker, index) in markers"
         :key="index"
         :marker="marker"
         :google="google"
@@ -19,17 +19,17 @@
 </template>
 
 <script>
-import GoogleMapLoader from './GoogleMapLoader'
-import GoogleMapMarker from './GoogleMapMarker'
-import resturants from '../assets/resturantReview.json'
+import GoogleMapLoader from "./GoogleMapLoader";
+import GoogleMapMarker from "./GoogleMapMarker";
+import resturants from "../assets/resturantReview.json";
 
 export default {
   components: {
     GoogleMapLoader,
-    GoogleMapMarker
+    GoogleMapMarker,
   },
   // import JSON data to ResturnatMap
-  data () {
+  data() {
     return {
       resturants: resturants,
       markers: [
@@ -37,27 +37,24 @@ export default {
         // { position: { lat: 51.512429, lng: -0.126896 } },
         // { position: { lat: 51.513951, lng: -0.122732 } },
         // { position: { lat: 51.5123591, lng: -0.1372875 } }
-      ]
-    }
+      ],
+    };
   },
 
   computed: {
-    mapConfig () {
+    mapConfig() {
       return {
-        center: this.mapCenter
-      }
+        center: this.mapCenter,
+      };
     },
 
-    mapCenter () {
+    mapCenter() {
       // return this.markers[1].position this doesnt seem to make a diffrence ???
-    }
+    },
   },
 
   methods: {
-    mapLoaded ({ google, map, places, geometry }) {
-
-    }
-  }
-}
-
+    mapLoaded({ google, map, places, geometry }){},
+  },
+};
 </script>

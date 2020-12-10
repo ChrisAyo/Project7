@@ -1,6 +1,6 @@
 [
-    {    
-        "place_id":"Jacksbar",
+    {
+        "place_id": "Jacksbar",
         "restaurantName": "Jacks bar",
         "address": "123",
         "lat": 51.512829,
@@ -67,7 +67,7 @@
             }
         ]
     },
-    {   
+    {
         "place_id": "haba",
         "restaurantName": "habalabulo",
         "address": "4 Rue Lamarck, 75018 Paris",
@@ -85,5 +85,3 @@
         ]
     }
 ]
-
-

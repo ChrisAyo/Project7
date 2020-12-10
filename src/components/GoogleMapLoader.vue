@@ -8,52 +8,50 @@
 </template>
 
 <script>
-import GoogleMapsApiLoader from 'google-maps-api-loader'
+import GoogleMapsApiLoader from "google-maps-api-loader";
 export default {
-
   props: {
     mapConfig: Object,
     apiKey: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  data () {
+  data() {
     return {
       google: null,
       map: null,
       geometry: null,
-      places: null
-    }
+      places: null,
+    };
   },
 
-  async mounted () {
+  async mounted() {
     if (!this.google && !this.map) {
       const googleMapApi = await GoogleMapsApiLoader({
-        libraries: ['places', 'geometry'],
-        apiKey: this.apiKey
-      })
-      this.google = googleMapApi
-      this.initializeMap()
+        libraries: ["places", "geometry"],
+        apiKey: this.apiKey,
+      });
+      this.google = googleMapApi;
+      this.initializeMap();
     }
   },
   methods: {
-    initializeMap () {
-      const mapContainer = this.$refs.googleMap
+    initializeMap() {
+      const mapContainer = this.$refs.googleMap;
       // if (!this.$refs.googleMap.textContent) {
-      this.map = new this.google.maps.Map(mapContainer, this.mapConfig)
-      this.geometry = this.google.maps.geometry
-      this.places = new this.google.maps.places.PlacesService(this.map)
-      this.$emit('loaded', {
+      this.map = new this.google.maps.Map(mapContainer, this.mapConfig);
+      this.geometry = this.google.maps.geometry;
+      this.places = new this.google.maps.places.PlacesService(this.map);
+      this.$emit("loaded", {
         google: this.google,
         map: this.map,
         places: this.places,
-        geometry: this.geometry
-      })}
-  
-  }
-}
-
+        geometry: this.geometry,
+      });
+    },
+  },
+};
 </script>
 
 <style>
