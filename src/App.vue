@@ -1,7 +1,6 @@
 <template>
   <v-app>
-    <Navbar :reviews="resturants"
-    @clicked="chosen" />
+    <Navbar :reviews="restaurants" @select="chosen" />
     <v-content>
       <v-container>
         <GoogleMapLoader
@@ -10,16 +9,16 @@
           apiKey="AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk"
         >
           <template slot-scope="{ google, map }">
-            <template v-for="(resturant, index) in resturants">
+            <template v-for="(restaurant, index) in restaurants">
               <GoogleMapInfoWindow
                 :google="google"
                 :map="map"
-                :content="resturant.restaurantName"
+                :content="restaurant.restaurantName"
                 :key="index"
               >
                 <template slot-scope="{ infoWindow }">
                   <GoogleMapMarker
-                    :marker="resturant"
+                    :marker="restaurant"
                     :google="google"
                     :map="map"
                     :info-window="infoWindow"
@@ -30,17 +29,17 @@
           </template>
         </GoogleMapLoader>
       </v-container>
-
-<v-dialog v-model="dialog">
-  <RestCard :reviews="resturants"/>
-</v-dialog>
-
       <v-container>
+        <v-dialog v-model="dialog">
+          <RestCard @update="addComments"
+            :reviews="restaurants"
+            :name="selectedResturantName"
+            :address="address"
+            :ratings="ratings"
+          />
+        </v-dialog>
         <ModalWindow @submit="updateRestaurant" />
       </v-container>
-         <!-- <v-container>
-      <RestCard/>
-      </v-container> -->
     </v-content>
   </v-app>
 </template>
@@ -48,7 +47,7 @@
 <script>
 import GoogleMapLoader from "./components/GoogleMapLoader";
 import GoogleMapMarker from "./components/GoogleMapMarker";
-import resturants from "./assets/resturantReview.json";
+import restaurants from "./assets/restaurantReview.json";
 import Navbar from "./components/Navbar";
 import GoogleMapInfoWindow from "./components/GoogleMapInfoWindow";
 import ModalWindow from "./components/ModalWindow";
@@ -64,17 +63,18 @@ export default {
     GoogleMapMarker,
     GoogleMapInfoWindow,
     ModalWindow,
-    RestCard
+    RestCard,
   },
 
   data() {
     return {
-      resturants: resturants,
+      restaurants: restaurants,
       markers: [],
-      plan:null,
       restaurantName: "",
-      dialog:false
-      
+      dialog: false,
+      selectedResturantName: "",
+      address: "",
+      ratings:[]
     };
   },
 
@@ -88,7 +88,6 @@ export default {
         map: this.map,
       });
 
-      
       // const content = this.resturants.restaurantName;
       //   const bounds = new this.google.maps.LatLngBounds()
 
@@ -176,12 +175,22 @@ export default {
     },
     updateRestaurant(payload) {
       // why payload???
-      this.resturants.push(payload);
+      this.restaurants.push(payload);
     },
-    chosen(payload){
-    this.dialog = true
-    // console.log('James-J')
+    chosen(payload) {
+      this.selectedResturantName = payload.restaurantName;
+      this.address = payload.address;
+      this.ratings = payload.ratings;
+      this.dialog = true;
+      // console.log(selectedReview)
+    },
+    addComments(payload){
+      this.restaurants.ratings.push(payload.ratings)
     }
+    // display(payload) {
+    //   this.plan = payload;
+    //   console.log(payload)
+    // },
   },
 };
 </script>

@@ -21,7 +21,7 @@
 <script>
 import GoogleMapLoader from "./GoogleMapLoader";
 import GoogleMapMarker from "./GoogleMapMarker";
-import resturants from "../assets/resturantReview.json";
+import restaurant from "../assets/restaurantReview.json";
 
 export default {
   components: {

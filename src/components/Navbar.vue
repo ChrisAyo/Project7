@@ -24,33 +24,24 @@
       <v-subheader> Resturants </v-subheader>
       <v-list dense>
         <div>
-          <v-list-item
-            @click="openWindow"
-            link
-            v-for="(review, index) in reviews"
-            :key="index"
-          >
-            <v-list-item-content>
-              <!-- <v-list-item-title
+          <v-list-item-group v-model="selection" active-class="primary">
+            <v-list-item
+              link
+              v-for="(review, index) in reviews"
+              :key="index"
+              @click="showInfo(review.restaurantName,review.address,review.ratings)"
+            >
+              <v-list-item-content>
+                <!-- <v-list-item-title
               @click="select"
               :class="{'active-plan': selected }"
               >{{ review.restaurantName }}</v-list-item-title> -->
 
-              <v-list-item-title>
-                {{ review.restaurantName }}
-              </v-list-item-title>
-              <v-card-actions>
-                <v-expand-transition>
-                  <div v-show="show">
-                    <v-divider></v-divider>
+                <v-list-item-title>
+                  {{ review.restaurantName }}
+                </v-list-item-title>
 
-                    <v-card-text>
-                      {{ review.address }}
-                    </v-card-text>
-                  </div>
-                </v-expand-transition>
-              </v-card-actions>
-              <!-- <v-card class="mx-auto my-12" max-width="374">
+                <!-- <v-card class="mx-auto my-12" max-width="374">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -114,8 +105,9 @@
       </v-btn>
     </v-card-actions>
   </v-card> -->
-            </v-list-item-content>
-          </v-list-item>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
         </div>
       </v-list>
     </v-navigation-drawer>
@@ -128,6 +120,9 @@ export default {
     drawer: true,
     show: false,
     selected: false,
+    selection: null,
+    plan: null,
+    selectedReview: null,
   }),
 
   props: {
@@ -141,12 +136,11 @@ export default {
   },
 
   methods: {
-    display() {
-      this.show = true;
-    },
-    openWindow() {
-      this.$emit("clicked", {
-        restuarantName: this.restaurantName,
+    showInfo(restaurantName,address,ratings) {
+      this.$emit("select", {
+        restaurantName: restaurantName,
+        address: address,
+        ratings: ratings
       });
     },
   },

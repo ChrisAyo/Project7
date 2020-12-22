@@ -36,16 +36,10 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field
-                  v-model="address"
-                  label="Address"
-                ></v-text-field>
+                <v-text-field id="autocomplete" v-model="address" label="Address"></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field
-                  v-model="ratings"
-                  label="Ratings"
-                ></v-text-field>
+                <v-text-field v-model="ratings" label="Ratings"></v-text-field>
               </v-col>
               <!-- <v-col
                 cols="12"
@@ -83,18 +77,31 @@
   </v-row>
 </template>
 <script>
-const foodPlaces = {};
+
 export default {
+  // props:{
+  //    google: {
+  //     type: Object,
+  //     required: true,
+  //   },
+  //   map: {
+  //     type: Object,
+  //     required: true,
+  //   },
+  // },
   data: () => ({
     dialog: false,
-    // selected: false,
     restaurantName: "",
-    address:"",
+    address: "",
     lat: null,
     lng: null,
-    ratings:""
-    // restuarants: {}, // or null ? or restuarants
+    ratings: "",
   }),
+
+  // mounted(){
+  //   new google.maps.places.Autocomplete(document.getElementById("autocomplete"))
+    
+  // },
 
   methods: {
     select() {
@@ -102,16 +109,16 @@ export default {
         restaurantName: this.restaurantName,
         lat: parseFloat(this.lat),
         lng: parseFloat(this.lng),
-        address:this.address,
-        ratings:this.ratings
+        address: this.address,
+        ratings: this.ratings,
       });
-      this.restaurantName = null
-      this.lat = null
-      this.lng = null
-      this.address = null
-      this.ratings = null
+      this.restaurantName = null;
+      this.lat = null;
+      this.lng = null;
+      this.address = null;
+      this.ratings = null;
       this.dialog = false;
-     
+
       //  var obj = $.parseJSON( '{ "name": "John" }')
       // var newObj =  {
       // 'restaurantName': $('[name="First"]').val(),

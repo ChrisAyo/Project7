@@ -1,6 +1,5 @@
 [
-    {
-        "place_id": "Jacksbar",
+    {   "place_id":"Jacksbar",
         "restaurantName": "Jacks bar",
         "address": "123",
         "lat": 51.512829,
@@ -17,7 +16,6 @@
         ]
     },
     {
-        "place_id": "Tom",
         "restaurantName": "Tom's Bistro",
         "address": "22 olam",
         "lat": 51.512429,
@@ -34,7 +32,6 @@
         ]
     },
     {
-        "place_id": "Baba",
         "restaurantName": "Babalou",
         "address": "4 Rue Lamarck, 75018 Paris",
         "lat": 51.513951,
@@ -51,11 +48,10 @@
         ]
     },
     {
-        "place_id": "Snap",
         "restaurantName": "snap grab",
-        "address": "4 Rue Lamarck, 75018 london",
-        "lat": 51.5150861,
-        "lng": -0.1247871,
+        "address": "4 Rue Lamarck, 75018 Paris",
+        "lat": 51.2123591,
+        "lng": -0.1372875,
         "ratings": [
             {
                 "stars": 5,
@@ -68,11 +64,10 @@
         ]
     },
     {
-        "place_id": "haba",
         "restaurantName": "habalabulo",
         "address": "4 Rue Lamarck, 75018 Paris",
-        "lat": 51.510856,
-        "lng": -0.133633,
+        "lat": 51.186483,
+        "lng": 4.343777,
         "ratings": [
             {
                 "stars": 5,

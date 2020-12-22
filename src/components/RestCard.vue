@@ -14,9 +14,9 @@
       src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
     ></v-img>
 <!-- <v-list-item-content v-for="(review, index) in reviews" :key="index"> -->
-    <v-card-title >{{reviews[0].restaurantName}}</v-card-title>
+   <v-card-title >{{name}}</v-card-title>
 <!-- </v-list-item-content> -->
-    <v-card-text>
+    <v-card-text >
       <v-row align="center" class="mx-0">
         <v-rating
           :value="4.5"
@@ -30,20 +30,25 @@
         <div class="grey--text ml-4">4.5 (413)</div>
       </v-row>
 
-      <div class="my-4 subtitle-1">$ • Italian, Cafe</div>
+      <div class="my-4 subtitle-1"> {{address}}</div>
 
       <div>
-        Small plates, salads & sandwiches - an intimate setting with 12 indoor
-        seats plus patio seating.
+        {{ratings[0]}}
       </div>
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
 
-    <v-card-title>Tonight's availability</v-card-title>
+    <v-card-title>Leave a Review </v-card-title>
 
     <v-card-text>
-      <v-chip-group
+      <v-col cols="12">
+                <v-text-field
+                  v-model="comment"
+                  label="Leave a comment"
+                ></v-text-field>
+              </v-col>
+      <!-- <v-chip-group
         v-model="selection"
         active-class="deep-purple accent-4 white--text"
         column
@@ -55,14 +60,15 @@
         <v-chip>8:00PM</v-chip>
 
         <v-chip>9:00PM</v-chip>
-      </v-chip-group>
-    </v-card-text>
-
-    <v-card-actions>
-      <v-btn color="deep-purple lighten-2" text @click="reserve">
-        Reserve
+      </v-chip-group> -->
+      <v-card-actions>
+      <v-btn color="deep-purple lighten-2" text @click="updateComment(review.ratings)" >
+        Save 
       </v-btn>
     </v-card-actions>
+    </v-card-text>
+
+    
 
   </v-card>
 </template>
@@ -71,9 +77,24 @@
 export default {
   data: () => ({
     loading: false,
-    selection: 1,
+    selection: 0,
+    comment:""
   }),
   props: {
+    name:{
+      type: [Object, String],
+      default: {}
+    },
+    address:{
+      type:[Object, String],
+      default(){
+      return {};
+      }
+    },
+    ratings:{
+      type: Array,
+      default:{}
+    },
     reviews: {
         
       type: Array,
@@ -81,12 +102,14 @@ export default {
         return [];
       },
     },
+    
   },
   methods: {
-    reserve() {
-      this.loading = true;
-      setTimeout(() => (this.loading = false), 2000);
-    },
+      updateComment(ratings){
+        this.$emit("update",{
+          comment: this.ratings
+        })
+      }
   },
 };
 </script>
