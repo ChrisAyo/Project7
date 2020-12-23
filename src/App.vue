@@ -32,7 +32,7 @@
       <v-container>
         <v-dialog v-model="dialog">
           <RestCard @update="addComments"
-            :reviews="restaurants"
+            :restaurant="currentRestaurant"
             :name="selectedResturantName"
             :address="address"
             :ratings="ratings"
@@ -74,7 +74,8 @@ export default {
       dialog: false,
       selectedResturantName: "",
       address: "",
-      ratings:[]
+      ratings:[],
+      currentRestaurant:null
     };
   },
 
@@ -178,14 +179,12 @@ export default {
       this.restaurants.push(payload);
     },
     chosen(payload) {
-      this.selectedResturantName = payload.restaurantName;
-      this.address = payload.address;
-      this.ratings = payload.ratings;
+      this.currentRestaurant = payload
       this.dialog = true;
       // console.log(selectedReview)
     },
     addComments(payload){
-      this.restaurants.ratings.push(payload.ratings)
+      this.currentRestaurant.ratings.push(payload)
     }
     // display(payload) {
     //   this.plan = payload;

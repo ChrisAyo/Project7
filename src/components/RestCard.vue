@@ -14,7 +14,7 @@
       src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
     ></v-img>
 <!-- <v-list-item-content v-for="(review, index) in reviews" :key="index"> -->
-   <v-card-title >{{name}}</v-card-title>
+   <v-card-title >{{restaurant.restaurantName}}</v-card-title>
 <!-- </v-list-item-content> -->
     <v-card-text >
       <v-row align="center" class="mx-0">
@@ -30,10 +30,10 @@
         <div class="grey--text ml-4">4.5 (413)</div>
       </v-row>
 
-      <div class="my-4 subtitle-1"> {{address}}</div>
+      <div class="my-4 subtitle-1"> {{restaurant.address}}</div>
 
       <div>
-        {{ratings[0]}}
+        {{restaurant.ratings}}
       </div>
     </v-card-text>
 
@@ -62,7 +62,7 @@
         <v-chip>9:00PM</v-chip>
       </v-chip-group> -->
       <v-card-actions>
-      <v-btn color="deep-purple lighten-2" text @click="updateComment(review.ratings)" >
+      <v-btn color="deep-purple lighten-2" text @click="updateComment(ratings)" >
         Save 
       </v-btn>
     </v-card-actions>
@@ -95,21 +95,21 @@ export default {
       type: Array,
       default:{}
     },
-    reviews: {
-        
-      type: Array,
+    restaurant: {
+      type: Object,
       default() {
-        return [];
+        return {};
       },
     },
     
   },
   methods: {
-      updateComment(ratings){
+      updateComment(){
         this.$emit("update",{
-          comment: this.ratings
+          comment: this.comment
         })
       }
   },
+  
 };
 </script>

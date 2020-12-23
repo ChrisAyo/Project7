@@ -29,8 +29,8 @@
               link
               v-for="(review, index) in reviews"
               :key="index"
-              @click="showInfo(review.restaurantName,review.address,review.ratings)"
-            >
+              @click="showInfo(review)"
+            > 
               <v-list-item-content>
                 <!-- <v-list-item-title
               @click="select"
@@ -136,12 +136,8 @@ export default {
   },
 
   methods: {
-    showInfo(restaurantName,address,ratings) {
-      this.$emit("select", {
-        restaurantName: restaurantName,
-        address: address,
-        ratings: ratings
-      });
+    showInfo(restaurant) {
+      this.$emit("select",restaurant);
     },
   },
 };
