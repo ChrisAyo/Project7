@@ -33,8 +33,6 @@
 
       <div v-for="(rating, name) in restaurant">
         {{ name }}:{{ rating }}
-        <div v-for="ratings in restaurant.ratings">
-          {{ ratings.ratings }}
         </div>
       </div>
     </v-card-text>
