@@ -30,7 +30,7 @@
               v-for="(review, index) in reviews"
               :key="index"
               @click="showInfo(review)"
-            > 
+            >
               <v-list-item-content>
                 <!-- <v-list-item-title
               @click="select"
@@ -137,7 +137,7 @@ export default {
 
   methods: {
     showInfo(restaurant) {
-      this.$emit("select",restaurant);
+      this.$emit("select", restaurant);
     },
   },
 };

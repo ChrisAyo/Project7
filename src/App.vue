@@ -35,7 +35,7 @@
             :restaurant="currentRestaurant"
             :name="selectedResturantName"
             :address="address"
-            :ratings="ratings"
+            :ratings="restaurants"
           />
         </v-dialog>
         <ModalWindow @submit="updateRestaurant" />
@@ -74,7 +74,7 @@ export default {
       dialog: false,
       selectedResturantName: "",
       address: "",
-      ratings:[],
+      ratings:restaurants,
       currentRestaurant:null
     };
   },
