@@ -31,10 +31,13 @@
 
       <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
 
-      <div v-for="(rating, name) in restaurant">
-        {{ name }}:{{ rating }}
+      <!-- [ {a: 1, b:2}, {a: 3, b: 4} ] -->
+      <div v-for="info in restaurant.ratings">
+        <div v-for="(value, name) in info">
+          {{ name }}: {{ value }}
         </div>
       </div>
+    
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
