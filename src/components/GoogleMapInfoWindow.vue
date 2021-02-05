@@ -17,7 +17,7 @@ export default {
     },
     marker: {
       type: Object,
-        // required: true
+      // required: true
     },
     content: {
       type: [String, Object, Array],

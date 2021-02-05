@@ -24,12 +24,12 @@
       <v-subheader> Resturants </v-subheader>
       <v-list dense>
         <div>
-          <v-list-item-group v-model="selection" active-class="primary">
+          <v-list-item-group active-class="primary">
             <v-list-item
               link
-              v-for="(review, index) in reviews"
+              v-for="(restaurant, index) in restaurants"
               :key="index"
-              @click="showInfo(review)"
+              @click="showInfo(restaurant)"
             >
               <v-list-item-content>
                 <!-- <v-list-item-title
@@ -38,7 +38,7 @@
               >{{ review.restaurantName }}</v-list-item-title> -->
 
                 <v-list-item-title>
-                  {{ review.restaurantName }}
+                  {{ restaurant.name }}
                 </v-list-item-title>
 
                 <!-- <v-card class="mx-auto my-12" max-width="374">
@@ -126,7 +126,7 @@ export default {
   }),
 
   props: {
-    reviews: {
+    restaurants: {
       // is reviews accesible globally ??
       type: Array,
       default() {
@@ -136,9 +136,42 @@ export default {
   },
 
   methods: {
-    showInfo(restaurant) {
+    showInfo({ restaurant }) {
       this.$emit("select", restaurant);
+
+      // const request = {
+      //   placeId: "ChIJoQ6CZc0EdkgRrPCbvL6UQ8M",
+      //   fields: ["name", "formatted_address", "place_id", "geometry"],
+      // };
+
+      // placesService.getDetails(request, (place, status) => {
+      //   if (status === google.maps.places.PlacesServiceStatus.OK) {
+      //     console.log(request);
+      //     // const marker = new google.maps.Marker({
+      //     //   map,
+      //     //   position: place.geometry.location,
+      //     // });
+
+      //     // google.maps.event.addListener(marker, "click", function () {
+      //     //   infowindow.setContent(
+      //     //     "<div><strong>" +
+      //     //       place.name +
+      //     //       "</strong><br>" +
+      //     //       "Place ID: " +
+      //     //       place.place_id +
+      //     //       "<br>" +
+      //     //       place.formatted_address +
+      //     //       "</div>"
+      //     //   );
+      //     //   infowindow.open(map, this);
+      //     // });
+      //   }
+      // });
     },
   },
+
+  // Getdetails( ) from google, reviews ratings etc....
+  //call the function get details on click of this.currentRestaurant,
+  // this.currentRestaurant then = to the result of getdetails to populate that field
 };
 </script>

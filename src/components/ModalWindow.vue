@@ -36,7 +36,7 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field id="autocomplete" v-model="address" label="Address"></v-text-field>
+                <v-text-field v-model="address" label="Address"></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field v-model="ratings" label="Ratings"></v-text-field>
@@ -77,7 +77,6 @@
   </v-row>
 </template>
 <script>
-
 export default {
   // props:{
   //    google: {
@@ -100,7 +99,7 @@ export default {
 
   // mounted(){
   //   new google.maps.places.Autocomplete(document.getElementById("autocomplete"))
-    
+
   // },
 
   methods: {
@@ -126,21 +125,6 @@ export default {
       // 'lng': $('[name="Last"]').val(),
     },
   },
-
-  //  let foodPlace = {
-  //     name: document.getElementBytag('v-text-field').value,
-  //     lat: document.getElementById('input-39').value,
-  // var details = input.value
-  //     const foodPlaces = {
-  //       place_id: Date.now(),
-  //       restaurantName: details,
-  //       address: '',
-  //       lat: position.lat(),
-  //       lng: position.lng(),
-  //       ratings: []
-  // this.$emit("WeMove");
-  // this.selected = true;
-  //  @click="dialog = false" for button save use custom events emit,to connect the parent component to the child component, one click the data should leave a marker and then populate the form.
 };
 </script>
 

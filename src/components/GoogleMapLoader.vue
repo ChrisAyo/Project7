@@ -16,13 +16,20 @@ export default {
       type: String,
       required: true,
     },
+    restaurant: {
+      // is reviews accesible globally ??
+      type: Array,
+      default() {
+        return [];
+      },
+    },
   },
   data() {
     return {
       google: null,
       map: null,
       geometry: null,
-      places: null,
+      placesService: null,
     };
   },
 
@@ -42,13 +49,46 @@ export default {
       // if (!this.$refs.googleMap.textContent) {
       this.map = new this.google.maps.Map(mapContainer, this.mapConfig);
       this.geometry = this.google.maps.geometry;
-      this.places = new this.google.maps.places.PlacesService(this.map);
+      this.placesService = new this.google.maps.places.PlacesService(this.map);
       this.$emit("loaded", {
         google: this.google,
         map: this.map,
-        places: this.places,
+        placesService: this.placesService,
         geometry: this.geometry,
       });
+
+      // const pyrmont = { lat: 51.512829, lng: -0.128001 };
+      // const service = new google.maps.places.PlacesService(this.map);
+      // service.nearbySearch(
+      //   { location: pyrmont, radius: 50, type: "restaurant" },
+      //   (results, status) => {
+      //     if (status !== "OK") return;
+      //     for (var i = 0; i < results.length; i++) {
+      //       var restaurant = results[i];
+      //       const marker = new google.maps.Marker({
+      //         map: this.map,
+      //         position: restaurant.geometry.location,
+      //         label: restaurant.name,
+      //       });
+
+      //       // var myLatlng = new google.maps.LatLng(restaurant., res);
+      //       // var marker = new google.maps.Marker({
+      //       //   position: myLatlng,
+      //       //   title: restaurant.title,
+      //       // });
+
+      //       // To add the marker to the map, call setMap();
+
+      //       //add event listent
+      //       // marker.addListener("click", () => {
+      //       //   console.log("hello");
+      //       //   // this.infoWindow.open(this.map, this.gMarker);
+      //       // });
+      //       // marker.setMap(this.map);
+      //     }
+
+      //   }
+      // );
     },
   },
 };

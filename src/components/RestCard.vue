@@ -13,7 +13,7 @@
       src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
     ></v-img>
     <!-- <v-list-item-content v-for="(review, index) in reviews" :key="index"> -->
-    <v-card-title>{{ restaurant.restaurantName }}</v-card-title>
+    <v-card-title>{{ restaurant.name }}</v-card-title>
     <!-- </v-list-item-content> -->
     <v-card-text>
       <v-row align="center" class="mx-0">
@@ -31,13 +31,12 @@
 
       <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
 
-      <!-- [ {a: 1, b:2}, {a: 3, b: 4} ] -->
-      <div v-for="info in restaurant.ratings">
-        <div v-for="(value, name) in info">
+      <div v-for="(info, index) in restaurant.ratings" :key="index">
+        <!-- <div v-for="(value, name) in info" :key="name">
           {{ name }}: {{ value }}
-        </div>
+        </div> -->
+        {{ info.stars }} {{ info.comment }}
       </div>
-    
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
@@ -46,6 +45,12 @@
 
     <v-card-text>
       <v-col cols="12">
+        <v-text-field
+          type="number"
+          step="any"
+          v-model="stars"
+          label="stars"
+        ></v-text-field>
         <v-text-field v-model="comment" label="Leave a comment"></v-text-field>
       </v-col>
       <!-- <v-chip-group
@@ -62,11 +67,7 @@
         <v-chip>9:00PM</v-chip>
       </v-chip-group> -->
       <v-card-actions>
-        <v-btn
-          color="deep-purple lighten-2"
-          text
-          @click="updateComment()"
-        >
+        <v-btn color="deep-purple lighten-2" text @click="updateComment()">
           Save
         </v-btn>
       </v-card-actions>
@@ -80,6 +81,7 @@ export default {
     loading: false,
     selection: 0,
     comment: "",
+    stars: null,
   }),
   props: {
     name: {
@@ -108,9 +110,16 @@ export default {
   methods: {
     updateComment() {
       this.$emit("update", {
+        stars: this.stars,
         comment: this.comment,
       });
+      this.stars = null;
+      this.comment = null;
     },
+
+    // Getdetails( ) from google, reviews ratings etc....
+    //call the function get details on click of this.currentRestaurant,
+    // this.currentRestaurant then = to the result of getdetails to populate that field
   },
 };
 </script>
