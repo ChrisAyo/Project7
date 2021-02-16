@@ -5,7 +5,7 @@
         "address": "75 Boughton Rd , RG40 8UZ",
         "lat": 51.512829,
         "lng": -0.128001,
-        "ratings": [
+        "rating": [
             {
                 "stars": 4,
                 "comment": "Great! But not many veggie options."
@@ -22,7 +22,7 @@
         "address": "89  Guild Street, E3 7FN",
         "lat": 51.512429,
         "lng": -0.126896,
-        "ratings": [
+        "rating": [
             {
                 "stars": 5,
                 "comment": "Tiny pizzeria next to Sacre Coeur!"

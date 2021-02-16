@@ -31,13 +31,26 @@
 
       <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
 
-      <div v-for="(info, index) in restaurant.ratings" :key="index">
+      <div v-for="(info, index) in restaurant.rating" :key="index">
         <!-- <div v-for="(value, name) in info" :key="name">
           {{ name }}: {{ value }}
         </div> -->
         {{ info.stars }} {{ info.comment }}
       </div>
     </v-card-text>
+    <v-card-text>
+      <div class="my-4 subtitle-1"><h2>Reviews</h2></div>
+
+      <div v-for="(rating, place_id) in reviews" :key="place_id">
+        <!-- <div v-for="(value, name) in info" :key="name">
+          {{ name }}: {{ value }}
+        </div> -->
+        <b
+          ><u>{{ rating.author_name }}:</u></b
+        >{{ rating.rating }}-{{ rating.text }}
+      </div>
+    </v-card-text>
+    <!-- <v-card-title>{{ reviews[0].rating }}</v-card-title> -->
 
     <v-divider class="mx-4"></v-divider>
 
@@ -104,6 +117,12 @@ export default {
       type: Object,
       default() {
         return {};
+      },
+    },
+    reviews: {
+      type: Array,
+      default() {
+        return [];
       },
     },
   },

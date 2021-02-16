@@ -136,37 +136,8 @@ export default {
   },
 
   methods: {
-    showInfo({ restaurant }) {
+    showInfo(restaurant) {
       this.$emit("select", restaurant);
-
-      // const request = {
-      //   placeId: "ChIJoQ6CZc0EdkgRrPCbvL6UQ8M",
-      //   fields: ["name", "formatted_address", "place_id", "geometry"],
-      // };
-
-      // placesService.getDetails(request, (place, status) => {
-      //   if (status === google.maps.places.PlacesServiceStatus.OK) {
-      //     console.log(request);
-      //     // const marker = new google.maps.Marker({
-      //     //   map,
-      //     //   position: place.geometry.location,
-      //     // });
-
-      //     // google.maps.event.addListener(marker, "click", function () {
-      //     //   infowindow.setContent(
-      //     //     "<div><strong>" +
-      //     //       place.name +
-      //     //       "</strong><br>" +
-      //     //       "Place ID: " +
-      //     //       place.place_id +
-      //     //       "<br>" +
-      //     //       place.formatted_address +
-      //     //       "</div>"
-      //     //   );
-      //     //   infowindow.open(map, this);
-      //     // });
-      //   }
-      // });
     },
   },
 

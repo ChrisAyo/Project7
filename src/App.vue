@@ -5,7 +5,6 @@
       @select="chosen"
       :google="google"
       :map="map"
-      :placesService="placesService"
       :geometry="geometry"
     />
     <v-content>
@@ -44,6 +43,7 @@
             :restaurant="currentRestaurant"
             :name="selectedResturantName"
             :address="address"
+            :reviews="currentReviews"
           />
         </v-dialog>
         <ModalWindow @submit="updateRestaurant" />
@@ -76,6 +76,7 @@ export default {
 
   data() {
     return {
+      currentReviews: [],
       localRestaurants: jsonRestaurants,
       googleRestaurants: [],
       markers: [],
@@ -205,7 +206,7 @@ export default {
       this.currentRestaurant = payload;
       this.dialog = true;
       const request = {
-        placeId: "ChIJoQ6CZc0EdkgRrPCbvL6UQ8M",
+        placeId: payload.place_id,
         fields: [
           "name",
           "formatted_address",
@@ -216,10 +217,14 @@ export default {
           "user_ratings_total",
         ],
       };
-
-      placesService.getDetails(request, (place, status) => {
+      // display the data inside to components, look inside Restcard props. v-for loop to dispaly the arrays
+      // Data create currentReviews - then set it inside chosen place.reviews
+      // rest card component define a new prop called reviews
+      // placesServices needs to be defined here i need to give this application access.
+      this.placesService.getDetails(request, (place, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          console.log(place.reviews);
+          this.currentReviews = place.reviews;
+          console.log(this.currentReviews);
           // const marker = new google.maps.Marker({
           //   map,
           //   position: place.geometry.location,
