@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="primary" dark v-bind="attrs" v-on="on">
-          Open Dialog
+          Add Restaurant
         </v-btn>
       </template>
       <v-card>
@@ -39,7 +39,7 @@
                 <v-text-field v-model="address" label="Address"></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field v-model="ratings" label="Ratings"></v-text-field>
+                <v-text-field v-model="rating" label="Ratings"></v-text-field>
               </v-col>
               <!-- <v-col
                 cols="12"
@@ -94,7 +94,7 @@ export default {
     address: "",
     lat: null,
     lng: null,
-    ratings: "",
+    rating: "",
   }),
 
   // mounted(){
@@ -105,11 +105,11 @@ export default {
   methods: {
     select() {
       this.$emit("submit", {
-        restaurantName: this.restaurantName,
+        name: this.restaurantName,
         lat: parseFloat(this.lat),
         lng: parseFloat(this.lng),
         address: this.address,
-        ratings: this.ratings,
+        rating: this.ratings,
       });
       this.restaurantName = null;
       this.lat = null;

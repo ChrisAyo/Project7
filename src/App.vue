@@ -44,6 +44,8 @@
             :name="selectedResturantName"
             :address="address"
             :reviews="currentReviews"
+            :googleAddress="currentAddress"
+            :details="currentDetails"
           />
         </v-dialog>
         <ModalWindow @submit="updateRestaurant" />
@@ -76,6 +78,8 @@ export default {
 
   data() {
     return {
+      currentDetails: [],
+      currentAddress: "",
       currentReviews: [],
       localRestaurants: jsonRestaurants,
       googleRestaurants: [],
@@ -200,9 +204,13 @@ export default {
 
     updateRestaurant(payload) {
       // why payload???
-      this.restaurants.push(payload);
+      this.localRestaurants.push(payload);
+      // this.currentRestaurant.reviews.push(payload);
     },
     chosen(payload) {
+      this.currentAddress = "";
+      this.currentDetails = [];
+      this.currentReviews = [];
       this.currentRestaurant = payload;
       this.dialog = true;
       const request = {
@@ -214,7 +222,8 @@ export default {
           "geometry",
           "reviews",
           "rating",
-          "user_ratings_total",
+          "formatted_phone_number",
+          "opening_hours",
         ],
       };
       // display the data inside to components, look inside Restcard props. v-for loop to dispaly the arrays
@@ -223,8 +232,13 @@ export default {
       // placesServices needs to be defined here i need to give this application access.
       this.placesService.getDetails(request, (place, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          this.currentReviews = place.reviews;
-          console.log(this.currentReviews);
+          if (place.reviews) {
+            this.currentReviews = place.reviews;
+            console.log(this.currentReviews);
+            // console.log(place;
+            this.currentAddress = place.formatted_address;
+            this.currentDetails = place.opening_hours.weekday_text;
+          }
           // const marker = new google.maps.Marker({
           //   map,
           //   position: place.geometry.location,
@@ -247,21 +261,9 @@ export default {
       });
     },
     addComments(payload) {
-      this.currentRestaurant.ratings.push(payload);
+      this.currentReviews.push(payload);
+      // this.googleRestaurants.ratings.push(payload);
     },
-    // display(payload) {
-    //   this.plan = payload;
-    //   console.log(payload)
-    // },
-
-    //  callback = (results, status) {
-    //   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    //     console.log(results)
-    //     // for (var i = 0; i < results.length; i++) {
-    //     //   createMarker(results[i]);
-    //     // }
-    //       }
-    //     }
   },
   computed: {
     restaurants() {

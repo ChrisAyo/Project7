@@ -30,13 +30,8 @@
       </v-row>
 
       <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
-
-      <div v-for="(info, index) in restaurant.rating" :key="index">
-        <!-- <div v-for="(value, name) in info" :key="name">
-          {{ name }}: {{ value }}
-        </div> -->
-        {{ info.stars }} {{ info.comment }}
-      </div>
+      <div class="my-4 subtitle-1">{{ googleAddress }}</div>
+      <div class="my-4 subtitle-1">{{ details }}</div>
     </v-card-text>
     <v-card-text>
       <div class="my-4 subtitle-1"><h2>Reviews</h2></div>
@@ -57,6 +52,7 @@
     <v-card-title>Leave a Review</v-card-title>
 
     <v-card-text>
+      <v-text-field v-model="name" label="Name"></v-text-field>
       <v-col cols="12">
         <v-text-field
           type="number"
@@ -95,12 +91,22 @@ export default {
     selection: 0,
     comment: "",
     stars: null,
+    name: "",
   }),
   props: {
-    name: {
-      type: [Object, String],
-      default: {},
+    details: {
+      type: [Array],
+      default() {
+        return [];
+      },
     },
+    googleAddress: {
+      type: [String],
+    },
+    // name: {
+    //   type: [Object, String],
+    //   default: {},
+    // },
     address: {
       type: [Object, String],
       default() {
@@ -129,11 +135,13 @@ export default {
   methods: {
     updateComment() {
       this.$emit("update", {
-        stars: this.stars,
-        comment: this.comment,
+        rating: this.stars,
+        text: this.comment,
+        author_name: this.name,
       });
       this.stars = null;
       this.comment = null;
+      this.name = null;
     },
 
     // Getdetails( ) from google, reviews ratings etc....
