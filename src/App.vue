@@ -78,7 +78,7 @@ export default {
 
   data() {
     return {
-      currentDetails: [],
+      currentDetails: {},
       currentAddress: "",
       currentReviews: [],
       localRestaurants: jsonRestaurants,
@@ -209,7 +209,7 @@ export default {
     },
     chosen(payload) {
       this.currentAddress = "";
-      this.currentDetails = [];
+      this.currentDetails = {};
       this.currentReviews = [];
       this.currentRestaurant = payload;
       this.dialog = true;
@@ -223,7 +223,6 @@ export default {
           "reviews",
           "rating",
           "formatted_phone_number",
-          "opening_hours",
         ],
       };
       // display the data inside to components, look inside Restcard props. v-for loop to dispaly the arrays
@@ -235,9 +234,9 @@ export default {
           if (place.reviews) {
             this.currentReviews = place.reviews;
             console.log(this.currentReviews);
-            // console.log(place;
+
             this.currentAddress = place.formatted_address;
-            this.currentDetails = place.opening_hours.weekday_text;
+            this.currentDetails = place;
           }
           // const marker = new google.maps.Marker({
           //   map,

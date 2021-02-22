@@ -31,7 +31,7 @@
 
       <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
       <div class="my-4 subtitle-1">{{ googleAddress }}</div>
-      <div class="my-4 subtitle-1">{{ details }}</div>
+      <div class="my-4 subtitle-1">{{ details.formatted_address }}</div>
     </v-card-text>
     <v-card-text>
       <div class="my-4 subtitle-1"><h2>Reviews</h2></div>
@@ -95,9 +95,9 @@ export default {
   }),
   props: {
     details: {
-      type: [Array],
+      type: [Object],
       default() {
-        return [];
+        return {};
       },
     },
     googleAddress: {
