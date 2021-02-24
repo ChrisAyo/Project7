@@ -13,7 +13,7 @@
       src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
     ></v-img>
     <!-- <v-list-item-content v-for="(review, index) in reviews" :key="index"> -->
-    <v-card-title>{{ restaurant.name }}</v-card-title>
+    <v-card-title>{{ details.name }}</v-card-title>
     <!-- </v-list-item-content> -->
     <v-card-text>
       <v-row align="center" class="mx-0">
@@ -29,9 +29,10 @@
         <div class="grey--text ml-4">4.5 (413)</div>
       </v-row>
 
-      <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
-      <div class="my-4 subtitle-1">{{ googleAddress }}</div>
-      <div class="my-4 subtitle-1">{{ details }}</div>
+      <!-- <div class="my-4 subtitle-1">{{ restaurant.address }}</div> -->
+      <!-- <div class="my-4 subtitle-1">{{ googleAddress }}</div> -->
+      <div class="my-4 subtitle-1">{{ details.formatted_address }}</div>
+      <div class="my-4 subtitle-1">{{ details.formatted_phone_number }}</div>
     </v-card-text>
     <v-card-text>
       <div class="my-4 subtitle-1"><h2>Reviews</h2></div>
@@ -95,14 +96,12 @@ export default {
   }),
   props: {
     details: {
-      type: [Array],
+      type: [Object],
       default() {
-        return [];
+        return {};
       },
     },
-    googleAddress: {
-      type: [String],
-    },
+
     // name: {
     //   type: [Object, String],
     //   default: {},

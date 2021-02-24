@@ -108,7 +108,7 @@ export default {
         name: this.restaurantName,
         lat: parseFloat(this.lat),
         lng: parseFloat(this.lng),
-        address: this.address,
+        // address: this.address,
         rating: this.ratings,
       });
       this.restaurantName = null;

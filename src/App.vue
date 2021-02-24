@@ -1,7 +1,8 @@
 <template>
   <v-app>
     <Navbar
-      :restaurants="restaurants"
+      :restaurants="googleRestaurants"
+      :details="currentDetails"
       @select="chosen"
       :google="google"
       :map="map"
@@ -44,7 +45,6 @@
             :name="selectedResturantName"
             :address="address"
             :reviews="currentReviews"
-            :googleAddress="currentAddress"
             :details="currentDetails"
           />
         </v-dialog>
@@ -78,8 +78,7 @@ export default {
 
   data() {
     return {
-      currentDetails: [],
-      currentAddress: "",
+      currentDetails: {},
       currentReviews: [],
       localRestaurants: jsonRestaurants,
       googleRestaurants: [],
@@ -204,12 +203,11 @@ export default {
 
     updateRestaurant(payload) {
       // why payload???
-      this.localRestaurants.push(payload);
+      this.googleRestaurants.push(payload);
       // this.currentRestaurant.reviews.push(payload);
     },
     chosen(payload) {
-      this.currentAddress = "";
-      this.currentDetails = [];
+      this.currentDetails = {};
       this.currentReviews = [];
       this.currentRestaurant = payload;
       this.dialog = true;
@@ -237,7 +235,7 @@ export default {
             console.log(this.currentReviews);
             // console.log(place;
             this.currentAddress = place.formatted_address;
-            this.currentDetails = place.opening_hours.weekday_text;
+            this.currentDetails = place;
           }
           // const marker = new google.maps.Marker({
           //   map,
@@ -267,7 +265,8 @@ export default {
   },
   computed: {
     restaurants() {
-      return [...this.localRestaurants, ...this.googleRestaurants];
+      return [this.googleRestaurants];
+      //  return [...this.localRestaurants, ...this.googleRestaurants];
       // find out way to call the computed function and then display...
     },
   },

@@ -15,7 +15,7 @@ export default {
       required: true,
     },
     marker: {
-      type: Object,
+      type: [Object, Array],
       required: true,
     },
     infoWindow: {

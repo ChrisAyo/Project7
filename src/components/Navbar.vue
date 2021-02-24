@@ -133,6 +133,13 @@ export default {
         return [];
       },
     },
+
+    details: {
+      type: [Object],
+      default() {
+        return {};
+      },
+    },
   },
 
   methods: {
