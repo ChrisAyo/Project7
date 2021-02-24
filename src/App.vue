@@ -62,6 +62,7 @@ import Navbar from "./components/Navbar";
 import GoogleMapInfoWindow from "./components/GoogleMapInfoWindow";
 import ModalWindow from "./components/ModalWindow";
 import RestCard from "./components/RestCard";
+import RestInfoVue from "./components/RestInfo.vue";
 // import review from "./assets/review.json";
 
 export default {
@@ -234,31 +235,26 @@ export default {
           if (place.reviews) {
             this.currentReviews = place.reviews;
             console.log(this.currentReviews);
-
             this.currentAddress = place.formatted_address;
             this.currentDetails = place;
           }
-          // const marker = new google.maps.Marker({
-          //   map,
-          //   position: place.geometry.location,
-          // });
-
-          // google.maps.event.addListener(marker, "click", function () {
-          //   infowindow.setContent(
-          //     "<div><strong>" +
-          //       place.name +
-          //       "</strong><br>" +
-          //       "Place ID: " +
-          //       place.place_id +
-          //       "<br>" +
-          //       place.formatted_address +
-          //       "</div>"
-          //   );
-          //   infowindow.open(map, this);
-          // });
         }
       });
     },
+
+    createReviews(reviews) {
+      const result = [];
+      for (let i = 0; i < reviews.length; i++) {
+        const review = reviews[i];
+
+        result.push({
+          stars: review.rating,
+          comment: review.text,
+        });
+      }
+      return result;
+    },
+
     addComments(payload) {
       this.currentReviews.push(payload);
       // this.googleRestaurants.ratings.push(payload);
