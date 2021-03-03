@@ -30,19 +30,23 @@
       </v-row>
 
       <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
-      <div class="my-4 subtitle-1">{{ googleAddress }}</div>
+      <!-- <div class="my-4 subtitle-1">{{ googleAddress }}</div> -->
       <div class="my-4 subtitle-1">{{ details.formatted_address }}</div>
     </v-card-text>
     <v-card-text>
       <div class="my-4 subtitle-1"><h2>Reviews</h2></div>
 
-      <div v-for="(rating, place_id) in reviews" :key="place_id">
+      <div v-for="(info, place_id) in restaurant.rating" :key="place_id">
+        <b
+          ><u>{{ info.userName }}:</u></b
+        >
+        Rating:{{ info.stars }}- Comments {{ info.comment }}
         <!-- <div v-for="(value, name) in info" :key="name">
           {{ name }}: {{ value }}
         </div> -->
-        <b
-          ><u>{{ rating.author_name }}:</u></b
-        >{{ rating.rating }}-{{ rating.text }}
+        <!-- <b
+          ><u>{{ restaurant.address }}:</u></b
+        >{{ restaurant.name }}-{{ restaurant.comment }} -->
       </div>
     </v-card-text>
     <!-- <v-card-title>{{ reviews[0].rating }}</v-card-title> -->
@@ -95,9 +99,9 @@ export default {
   }),
   props: {
     details: {
-      type: [Object],
+      type: [Array],
       default() {
-        return {};
+        return [];
       },
     },
     googleAddress: {
@@ -135,9 +139,9 @@ export default {
   methods: {
     updateComment() {
       this.$emit("update", {
-        rating: this.stars,
-        text: this.comment,
-        author_name: this.name,
+        stars: this.stars,
+        comment: this.comment,
+        userName: this.name,
       });
       this.stars = null;
       this.comment = null;

@@ -7,10 +7,12 @@
         "lng": -0.128001,
         "rating": [
             {
+                "userName": "Noddy",
                 "stars": 4,
                 "comment": "Great! But not many veggie options."
             },
             {
+                "userName": "Potatoe Head",
                 "stars": 5,
                 "comment": "My favorite restaurant!"
             }
@@ -24,10 +26,12 @@
         "lng": -0.126896,
         "rating": [
             {
+                "userName": "Tim",
                 "stars": 5,
                 "comment": "Tiny pizzeria next to Sacre Coeur!"
             },
             {
+                "userName": "lesley",
                 "stars": 3,
                 "comment": "Meh, it was fine."
             }
@@ -41,10 +45,12 @@
         "lng": -0.122732,
         "rating": [
             {
+                "userName": "Tim",
                 "stars": 5,
                 "comment": "Tiny pizzeria next to Sacre Coeur!"
             },
             {
+                "userName": "Kit",
                 "stars": 3,
                 "comment": "Meh, it was fine."
             }
@@ -58,10 +64,12 @@
         "lng": -0.1247871,
         "rating": [
             {
+                "userName": "Spark",
                 "stars": 5,
                 "comment": "Tiny pizzeria next to Sacre Coeur!"
             },
             {
+                "userName": "Vicky T",
                 "stars": 3,
                 "comment": "Meh, it was fine."
             }
@@ -75,10 +83,12 @@
         "lng": -0.133633,
         "rating": [
             {
+                "userName": "Rick",
                 "stars": 5,
                 "comment": "Tiny pizzeria next to Sacre Coeur!"
             },
             {
+                "userName": "Lisa",
                 "stars": 3,
                 "comment": "Meh, it was fine."
             }

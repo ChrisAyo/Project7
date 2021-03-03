@@ -79,7 +79,7 @@ export default {
 
   data() {
     return {
-      currentDetails: {},
+      currentDetails: [],
       currentAddress: "",
       currentReviews: [],
       localRestaurants: jsonRestaurants,
@@ -197,9 +197,10 @@ export default {
             position: restaurant.geometry.location,
             label: restaurant.name,
           });
-          this.googleRestaurants = results;
           this.markers.push(marker);
         }
+        // this.googleRestaurants = results;
+        this.googleRestaurants = this.createRestaurants(results);
       }
     },
 
@@ -210,7 +211,7 @@ export default {
     },
     chosen(payload) {
       this.currentAddress = "";
-      this.currentDetails = {};
+      this.currentDetails = [];
       this.currentReviews = [];
       this.currentRestaurant = payload;
       this.dialog = true;
@@ -233,13 +234,16 @@ export default {
       this.placesService.getDetails(request, (place, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           if (place.reviews) {
-            this.currentReviews = place.reviews;
+            console.log(place.reviews);
+            this.currentReviews = this.createReviews(place.reviews);
+            this.currentRestaurant.rating = this.createReviews(place.reviews);
             console.log(this.currentReviews);
             this.currentAddress = place.formatted_address;
-            this.currentDetails = place;
+            // this.currentDetails = place;
           }
         }
       });
+      // this.currentRestaurant.rating = this.currentReviews;
     },
 
     createReviews(reviews) {
@@ -248,11 +252,30 @@ export default {
         const review = reviews[i];
 
         result.push({
+          userName: review.author_name,
           stars: review.rating,
           comment: review.text,
         });
       }
       return result;
+    },
+
+    createRestaurants(data) {
+      const restInfo = [];
+      for (let i = 0; i < data.length; i++) {
+        const item = data[i];
+
+        restInfo.push({
+          name: item.name,
+          lat: item.geometry.location.lat(),
+          lng: item.geometry.location.lng(),
+          place_id: item.place_id,
+        });
+      }
+      console.log("***********");
+      console.log(restInfo);
+      console.log("***********");
+      return restInfo;
     },
 
     addComments(payload) {
@@ -265,6 +288,10 @@ export default {
       return [...this.localRestaurants, ...this.googleRestaurants];
       // find out way to call the computed function and then display...
     },
+
+    // restDetails() {
+    //   return [...this.createRestaurant, ...this.currentReviews];
+    // },
   },
 };
 </script>
