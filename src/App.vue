@@ -234,10 +234,8 @@ export default {
       this.placesService.getDetails(request, (place, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           if (place.reviews) {
-            console.log(place.reviews);
             this.currentReviews = this.createReviews(place.reviews);
             this.currentRestaurant.rating = this.createReviews(place.reviews);
-            console.log(this.currentReviews);
             this.currentAddress = place.formatted_address;
             // this.currentDetails = place;
           }
@@ -279,7 +277,7 @@ export default {
     },
 
     addComments(payload) {
-      this.currentReviews.push(payload);
+      this.currentRestaurant.rating.push(payload);
       // this.googleRestaurants.ratings.push(payload);
     },
   },
