@@ -235,7 +235,6 @@ export default {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           if (place.reviews) {
             this.currentReviews = this.createReviews(place.reviews);
-            this.currentRestaurant.rating = this.createReviews(place.reviews);
             this.currentAddress = place.formatted_address;
             // this.currentDetails = place;
           }
@@ -244,6 +243,7 @@ export default {
       // this.currentRestaurant.rating = this.currentReviews;
     },
 
+    // data binding?
     createReviews(reviews) {
       const result = [];
       for (let i = 0; i < reviews.length; i++) {
@@ -277,7 +277,7 @@ export default {
     },
 
     addComments(payload) {
-      this.currentRestaurant.rating.push(payload);
+      this.currentReviews.push(payload);
       // this.googleRestaurants.ratings.push(payload);
     },
   },

@@ -36,7 +36,7 @@
     <v-card-text>
       <div class="my-4 subtitle-1"><h2>Reviews</h2></div>
 
-      <div v-for="(info, place_id) in restaurant.rating" :key="place_id">
+      <div v-for="(info, place_id) in reviews" :key="place_id">
         <b
           ><u>{{ info.userName }}:</u></b
         >
@@ -115,12 +115,6 @@ export default {
       type: [Object, String],
       default() {
         return {};
-      },
-    },
-    ratings: {
-      type: Array,
-      default() {
-        return [];
       },
     },
     restaurant: {

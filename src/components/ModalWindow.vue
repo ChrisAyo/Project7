@@ -109,13 +109,12 @@ export default {
         lat: parseFloat(this.lat),
         lng: parseFloat(this.lng),
         address: this.address,
-        rating: this.ratings,
       });
       this.restaurantName = null;
       this.lat = null;
       this.lng = null;
       this.address = null;
-      this.ratings = null;
+
       this.dialog = false;
 
       //  var obj = $.parseJSON( '{ "name": "John" }')
