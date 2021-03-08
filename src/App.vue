@@ -168,6 +168,7 @@ export default {
           radius: 50,
           type: "restaurant",
         };
+        Console.log("Hello hello");
         this.removeMarkers();
         // another function that lists through current list of google markers - and sets the map to null
         placesService.nearbySearch(request, this.nearbySearchCallback);
