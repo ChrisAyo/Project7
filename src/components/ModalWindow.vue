@@ -41,9 +41,6 @@
               <v-col cols="12">
                 <v-text-field v-model="rating" label="Ratings"></v-text-field>
               </v-col>
-              <!-- <GoogleMapLoader>
-
-             </GoogleMapLoader> -->
             </v-row>
           </v-container>
           <!-- <small>*indicates required field</small> -->
@@ -61,16 +58,6 @@
 </template>
 <script>
 export default {
-  // props:{
-  //    google: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  //   map: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  // },
   data: () => ({
     dialog: false,
     restaurantName: "",
