@@ -1,10 +1,10 @@
-As a user I would like to add a restaurant so that I can include restaurants that don't exists.
+As a user I would like to add a restaurant so that I can include restaurants that doesn't exists.
 Acceptance Criteria
 1. Button on main page to add restaurant 
 2. Clicking on the button opens a modal window
 3. Modal window has required input fields for restaurant (name,address,etc)
 4. Clicking add/save restaurant will populate the nav bar and the main google maps 
-
+Yes this works 
 
 As a user i want to be able to add a review, so that other users can find my thoughts. 
 
@@ -17,3 +17,9 @@ Acceptance Criteria
 3.Clicking on google maps will add a marker 
 4.Modal window only has an input field for restaurantName
 5.Clicking add/save restaurant will populate the nav bar and the main google maps 
+
+What do i need to display google map in Modal window? - done
+Data return in modal window, why do i need Google, etc. 
+
+Callback function research (async..often used )
+

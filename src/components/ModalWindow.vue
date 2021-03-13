@@ -43,7 +43,26 @@
               </v-col>
             </v-row>
           </v-container>
-          <!-- <small>*indicates required field</small> -->
+          <v-container>
+            <GoogleMapLoader
+              @loaded="mapLoaded"
+              :mapConfig="{
+                center: { lat: 51.512829, lng: -0.128001 },
+                zoom: 12,
+              }"
+              apiKey="AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk"
+            >
+              <template slot-scope="{ google, map }">
+                <template v-if="lat && lng">
+                  <GoogleMapMarker
+                    :marker="location"
+                    :google="google"
+                    :map="map"
+                  />
+                </template>
+              </template>
+            </GoogleMapLoader>
+          </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -57,20 +76,23 @@
   </v-row>
 </template>
 <script>
+import GoogleMapLoader from "./GoogleMapLoader.vue";
+import GoogleMapMarker from "./GoogleMapMarker";
 export default {
+  components: { GoogleMapLoader, GoogleMapMarker },
   data: () => ({
     dialog: false,
     restaurantName: "",
     address: "",
+    location: null,
     lat: null,
     lng: null,
     rating: "",
+    google: null,
+    map: null,
+    geometry: null,
+    placesService: null,
   }),
-
-  // mounted(){
-  //   new google.maps.places.Autocomplete(document.getElementById("autocomplete"))
-
-  // },
 
   methods: {
     select() {
@@ -92,6 +114,14 @@ export default {
       // 'restaurantName': $('[name="First"]').val(),
       // 'lat': $('[name="Middle"]').val(),
       // 'lng': $('[name="Last"]').val(),
+    },
+
+    mapLoaded({ google, map }) {
+      google.maps.event.addListener(map, "click", (event) => {
+        this.lat = event.latLng.lat();
+        this.lng = event.latLng.lng();
+        this.location = { lat: this.lat, lng: this.lng };
+      });
     },
   },
 };

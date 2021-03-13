@@ -32,6 +32,7 @@ export default {
     };
   },
 
+  // async mounted when is this run??
   async mounted() {
     if (!this.google && !this.map) {
       const googleMapApi = await GoogleMapsApiLoader({
@@ -39,6 +40,7 @@ export default {
         apiKey: this.apiKey,
       });
       this.google = googleMapApi;
+      // console.log("hello");
       this.initializeMap();
     }
   },
@@ -55,6 +57,7 @@ export default {
         placesService: this.placesService,
         geometry: this.geometry,
       });
+      // this.$emit("run", this.initializeMap());
     },
   },
 };
