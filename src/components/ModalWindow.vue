@@ -43,6 +43,7 @@
               </v-col>
             </v-row>
           </v-container>
+
           <v-container>
             <GoogleMapLoader
               @loaded="mapLoaded"
@@ -52,6 +53,7 @@
               }"
               apiKey="AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk"
             >
+              <!-- <template v-for="(marker, index) in markers"> -->
               <template slot-scope="{ google, map }">
                 <template v-if="lat && lng">
                   <GoogleMapMarker
@@ -61,6 +63,7 @@
                   />
                 </template>
               </template>
+              <!-- </template> -->
             </GoogleMapLoader>
           </v-container>
         </v-card-text>
@@ -87,6 +90,8 @@ export default {
     location: null,
     lat: null,
     lng: null,
+    pointer: [],
+    markers: [],
     rating: "",
     google: null,
     map: null,
@@ -108,20 +113,41 @@ export default {
       this.address = null;
 
       this.dialog = false;
-
-      //  var obj = $.parseJSON( '{ "name": "John" }')
-      // var newObj =  {
-      // 'restaurantName': $('[name="First"]').val(),
-      // 'lat': $('[name="Middle"]').val(),
-      // 'lng': $('[name="Last"]').val(),
     },
 
+    // mapLoaded({ google, map }) {
+    //   google.maps.event.addListener(map, "click", (event) => {
+    //     this.lat = event.latLng.lat();
+    //     this.lng = event.latLng.lng();
+    //     this.location = { lat: this.lat, lng: this.lng };
+    //   });
+
+    // },
     mapLoaded({ google, map }) {
       google.maps.event.addListener(map, "click", (event) => {
         this.lat = event.latLng.lat();
         this.lng = event.latLng.lng();
         this.location = { lat: this.lat, lng: this.lng };
+
+        // // this.pointer.push(this.location);
+        // const marker = new google.maps.Marker({
+        //   position: this.location,
+        //   map: this.map,
+        // });
+        // this.markers.push(marker);
       });
+    },
+
+    // addMarkers() {
+    //   for (let i = 0; i < markers.length; i++) {
+    //     this.markers[i].setMap(this.map);
+    //   }
+    // },
+    removeMarker() {
+      for (let i = 0; i < this.location.length; i++) {
+        this.location[i].setMap(null);
+      }
+      this.location = { lat: null, lng: null };
     },
   },
 };

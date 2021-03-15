@@ -15,11 +15,14 @@ Acceptance Criteria
 1.Clicking on button opens a modal window
 2.Google Map is displayed in Modal window
 3.Clicking on google maps will add a marker 
-4.Modal window only has an input field for restaurantName
-5.Clicking add/save restaurant will populate the nav bar and the main google maps 
+4.Clicking on another location on the map will add another marker and remove the old one.
+5.Modal window only has an input field for restaurantName
+6.Clicking add/save restaurant will populate the nav bar and the main google maps 
 
 What do i need to display google map in Modal window? - done
 Data return in modal window, why do i need Google, etc. 
 
 Callback function research (async..often used )
 
+Find a way to remove markers, currently i am giving them lat and lng and setting it as an object. 
+Try and replicate what i did previously with gmarker on App.vue and restaurant.

@@ -152,7 +152,6 @@ export default {
       }
       this.markers = [];
     },
-
     mapLoaded({ google, map, placesService, geometry }) {
       //when the map is idle run nearbySearch for new location, (Event Listner)
       //consider renaming places to placeService
@@ -170,6 +169,7 @@ export default {
         };
 
         this.removeMarkers();
+
         // another function that lists through current list of google markers - and sets the map to null
         placesService.nearbySearch(request, this.nearbySearchCallback);
       });
@@ -241,7 +241,6 @@ export default {
           }
         }
       });
-      // this.currentRestaurant.rating = this.currentReviews;
     },
 
     // data binding?
@@ -271,9 +270,7 @@ export default {
           place_id: item.place_id,
         });
       }
-      console.log("***********");
-      console.log(restInfo);
-      console.log("***********");
+
       return restInfo;
     },
 
