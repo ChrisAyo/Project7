@@ -26,3 +26,9 @@ Callback function research (async..often used )
 
 Find a way to remove markers, currently i am giving them lat and lng and setting it as an object. 
 Try and replicate what i did previously with gmarker on App.vue and restaurant.
+
+How can i get vue to check what information has been selected. and then updated. 
+
+Remove form values from Modal Window for Lat and Lng 
+Work on adding images
+Filter array - change the value form input - On the value change 

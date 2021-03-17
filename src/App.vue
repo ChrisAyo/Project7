@@ -16,12 +16,12 @@
           apiKey="AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk"
         >
           <template slot-scope="{ google, map }">
-            <template v-for="(restaurant, index) in restaurants">
+            <template v-for="restaurant in restaurants">
               <GoogleMapInfoWindow
                 :google="google"
                 :map="map"
                 :content="restaurant.restaurantName"
-                :key="index"
+                :key="restaurant.lat"
               >
                 <template slot-scope="{ infoWindow }">
                   <GoogleMapMarker
@@ -206,9 +206,8 @@ export default {
     },
 
     updateRestaurant(payload) {
-      // why payload???
+      payload.place_id = Date.now();
       this.localRestaurants.push(payload);
-      // this.currentRestaurant.reviews.push(payload);
     },
     chosen(payload) {
       this.currentAddress = "";

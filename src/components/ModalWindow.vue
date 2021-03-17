@@ -53,17 +53,16 @@
               }"
               apiKey="AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk"
             >
-              <!-- <template v-for="(marker, index) in markers"> -->
               <template slot-scope="{ google, map }">
-                <template v-if="lat && lng">
+                <template v-for="marker in markers">
                   <GoogleMapMarker
-                    :marker="location"
+                    :marker="marker"
                     :google="google"
                     :map="map"
+                    :key="marker.lat"
                   />
                 </template>
               </template>
-              <!-- </template> -->
             </GoogleMapLoader>
           </v-container>
         </v-card-text>
@@ -111,7 +110,8 @@ export default {
       this.lat = null;
       this.lng = null;
       this.address = null;
-
+      this.rating = null;
+      this.markers = [];
       this.dialog = false;
     },
 
@@ -127,27 +127,8 @@ export default {
       google.maps.event.addListener(map, "click", (event) => {
         this.lat = event.latLng.lat();
         this.lng = event.latLng.lng();
-        this.location = { lat: this.lat, lng: this.lng };
-
-        // // this.pointer.push(this.location);
-        // const marker = new google.maps.Marker({
-        //   position: this.location,
-        //   map: this.map,
-        // });
-        // this.markers.push(marker);
+        this.markers = [{ lat: this.lat, lng: this.lng }];
       });
-    },
-
-    // addMarkers() {
-    //   for (let i = 0; i < markers.length; i++) {
-    //     this.markers[i].setMap(this.map);
-    //   }
-    // },
-    removeMarker() {
-      for (let i = 0; i < this.location.length; i++) {
-        this.location[i].setMap(null);
-      }
-      this.location = { lat: null, lng: null };
     },
   },
 };

@@ -37,5 +37,9 @@ export default {
       this.infoWindow.open(this.map, this.gMarker);
     });
   },
+
+  beforeDestroy() {
+    this.gMarker.setMap(null);
+  },
 };
 </script>
