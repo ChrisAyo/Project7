@@ -1,3 +1,4 @@
+Story 1
 As a user I would like to add a restaurant so that I can include restaurants that doesn't exists.
 Acceptance Criteria
 1. Button on main page to add restaurant 
@@ -9,7 +10,7 @@ Yes this works
 As a user i want to be able to add a review, so that other users can find my thoughts. 
 
 
-
+Story 3
 As a user I want to be able to select a point on the map so I don't have to manual input the details
 Acceptance Criteria
 1.Clicking on button opens a modal window
@@ -27,8 +28,15 @@ Callback function research (async..often used )
 Find a way to remove markers, currently i am giving them lat and lng and setting it as an object. 
 Try and replicate what i did previously with gmarker on App.vue and restaurant.
 
-How can i get vue to check what information has been selected. and then updated. 
-
-Remove form values from Modal Window for Lat and Lng 
-Work on adding images
+Work on adding google street view images to the restaurant
+Work on adding user requirements to modal window so it rejects the wrong choices
 Filter array - change the value form input - On the value change 
+clicking on the google maps marker will autocomplete the address field
+
+Story 4
+As user I want to see the Google Street View photo via the corresponding API.
+Acceptance Criteria
+1.Clicking on the restaurants will open rest card
+2.Restcard will display the image of the current restaurant selected 
+3.
+4.

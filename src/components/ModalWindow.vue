@@ -19,22 +19,6 @@
                   label="Restaurant Name"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                  type="number"
-                  step="any"
-                  v-model="lat"
-                  label="Lat"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                  type="number"
-                  step="any"
-                  v-model="lng"
-                  label="Lng"
-                ></v-text-field>
-              </v-col>
               <v-col cols="12">
                 <v-text-field v-model="address" label="Address"></v-text-field>
               </v-col>
@@ -114,15 +98,6 @@ export default {
       this.markers = [];
       this.dialog = false;
     },
-
-    // mapLoaded({ google, map }) {
-    //   google.maps.event.addListener(map, "click", (event) => {
-    //     this.lat = event.latLng.lat();
-    //     this.lng = event.latLng.lng();
-    //     this.location = { lat: this.lat, lng: this.lng };
-    //   });
-
-    // },
     mapLoaded({ google, map }) {
       google.maps.event.addListener(map, "click", (event) => {
         this.lat = event.latLng.lat();

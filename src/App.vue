@@ -124,15 +124,6 @@ export default {
         }
 
         navigator.geolocation.getCurrentPosition(success, error, options);
-        // navigator.geolocation.getCurrentPosition((position) => {
-        //   console.log(position);
-        //   this.location.lat = position.coords.latitude;
-        //   this.location.lng = position.coords.longitude;
-        //   this.map.setCenter({
-        //     lat: position.coords.latitude,
-        //     lng: position.coords.longitude,
-        //   });
-        // });
       } else {
         console.log("Geolocation is not supported by this browser");
       }
@@ -140,11 +131,6 @@ export default {
     showPosition(position) {
       this.location.lat = position.coords.latitude;
       this.location.lng = position.coords.longitude;
-      // this.map.setCenter({
-      //   lat: position.coords.latitude,
-      //   lng: position.coords.longitude,
-      // });
-      // console.log("lat");
     },
     removeMarkers() {
       for (let i = 0; i < this.markers.length; i++) {
@@ -173,18 +159,6 @@ export default {
         // another function that lists through current list of google markers - and sets the map to null
         placesService.nearbySearch(request, this.nearbySearchCallback);
       });
-
-      // To add the marker to the map, call setMap();
-
-      // add event listent
-      // marker.addListener("click", () => {
-      //   console.log("hello");
-      //   // this.infoWindow.open(this.map, this.gMarker);
-      // });
-      // marker.setMap(this.map);
-      //     }
-      //   }
-      // );
     },
 
     nearbySearchCallback(results, status) {
@@ -283,10 +257,6 @@ export default {
       return [...this.localRestaurants, ...this.googleRestaurants];
       // find out way to call the computed function and then display...
     },
-
-    // restDetails() {
-    //   return [...this.createRestaurant, ...this.currentReviews];
-    // },
   },
 };
 </script>
