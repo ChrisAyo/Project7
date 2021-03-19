@@ -7,6 +7,7 @@
         indeterminate
       ></v-progress-linear>
     </template>
+    <StreetView :lat="restaurant.lat" :lng="restaurant.lng" />
 
     <v-img
       height="250"
@@ -31,7 +32,7 @@
 
       <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
       <!-- <div class="my-4 subtitle-1">{{ googleAddress }}</div> -->
-      <div class="my-4 subtitle-1">{{ details.formatted_address }}</div>
+      <!-- <div class="my-4 subtitle-1">{{ googleAddress }}</div> -->
     </v-card-text>
     <v-card-text>
       <div class="my-4 subtitle-1"><h2>Reviews</h2></div>
@@ -41,12 +42,6 @@
           ><u>{{ info.userName }}:</u></b
         >
         Rating:{{ info.stars }}- Comments {{ info.comment }}
-        <!-- <div v-for="(value, name) in info" :key="name">
-          {{ name }}: {{ value }}
-        </div> -->
-        <!-- <b
-          ><u>{{ restaurant.address }}:</u></b
-        >{{ restaurant.name }}-{{ restaurant.comment }} -->
       </div>
     </v-card-text>
     <!-- <v-card-title>{{ reviews[0].rating }}</v-card-title> -->
@@ -66,21 +61,12 @@
         ></v-text-field>
         <v-text-field v-model="comment" label="Leave a comment"></v-text-field>
       </v-col>
-      <!-- <v-chip-group
-        v-model="selection"
-        active-class="deep-purple accent-4 white--text"
-        column
-      >
-        <v-chip>5:30PM</v-chip>
 
-        <v-chip>7:30PM</v-chip>
-
-        <v-chip>8:00PM</v-chip>
-
-        <v-chip>9:00PM</v-chip>
-      </v-chip-group> -->
       <v-card-actions>
-        <v-btn color="deep-purple lighten-2" text @click="updateComment()">
+        <v-btn color="deep darken-1" text @click="dialog = false">
+          Close
+        </v-btn>
+        <v-btn color="deep darken-1" text @click="updateComment()">
           Save
         </v-btn>
       </v-card-actions>
@@ -89,8 +75,14 @@
 </template>
 
 <script>
+import StreetView from "./StreetView";
+
 export default {
+  components: {
+    StreetView,
+  },
   data: () => ({
+    dialog: false,
     loading: false,
     selection: 0,
     comment: "",

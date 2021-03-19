@@ -36,9 +36,13 @@ clicking on the google maps marker will autocomplete the address field
 Story 4
 As user I want to see the Google Street View photo via the corresponding API.
 Acceptance Criteria
+1.A Component that displays the streetView when selected 
 1.Clicking on the restaurants will open rest card
 2.Restcard will display the image of the current restaurant selected 
 3.
 4.
 
 Hardcoded Restaurants Reviews are not displaying, Address for google restaurants are not displaying.
+Restcard reviews needs to close when i click Close btn 
+
+Story5
