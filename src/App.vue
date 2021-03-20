@@ -63,7 +63,7 @@ import GoogleMapInfoWindow from "./components/GoogleMapInfoWindow";
 import ModalWindow from "./components/ModalWindow";
 import RestCard from "./components/RestCard";
 import RestInfoVue from "./components/RestInfo.vue";
-import StreetView from "./components/StreetView";
+// import StreetView from "./components/StreetView";
 // import review from "./assets/review.json";
 
 export default {
@@ -76,7 +76,7 @@ export default {
     GoogleMapInfoWindow,
     ModalWindow,
     RestCard,
-    StreetView,
+    // StreetView,
   },
 
   data() {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img height="150" :src="apiSource"> </v-img>
+    <v-img height="250" :src="apiSource"> </v-img>
   </div>
 </template>
 

@@ -8,11 +8,6 @@
       ></v-progress-linear>
     </template>
     <StreetView :lat="restaurant.lat" :lng="restaurant.lng" />
-
-    <v-img
-      height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-    ></v-img>
     <!-- <v-list-item-content v-for="(review, index) in reviews" :key="index"> -->
     <v-card-title>{{ restaurant.name }}</v-card-title>
     <!-- </v-list-item-content> -->
@@ -75,7 +70,7 @@
 </template>
 
 <script>
-import StreetView from "./StreetView";
+import StreetView from "./streetView";
 
 export default {
   components: {
