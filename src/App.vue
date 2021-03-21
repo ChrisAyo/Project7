@@ -248,7 +248,10 @@ export default {
 
       return restInfo;
     },
-
+    isBig() {
+      const filters = this.numbers.filter((value) => value >= 2);
+      console.log(filters);
+    },
     addComments(payload) {
       this.currentReviews.push(payload);
       // this.googleRestaurants.ratings.push(payload);

@@ -58,9 +58,7 @@
       </v-col>
 
       <v-card-actions>
-        <v-btn color="deep darken-1" text @click="dialog = false">
-          Close
-        </v-btn>
+        <v-btn color="deep darken-1" text @click="isBig()"> Close </v-btn>
         <v-btn color="deep darken-1" text @click="updateComment()">
           Save
         </v-btn>
@@ -83,6 +81,7 @@ export default {
     comment: "",
     stars: null,
     name: "",
+    numbers: [1, 2, 4, 5, 6, 8, 8, 1, 5, 3, 4, 2, 8, 0],
   }),
   props: {
     details: {
@@ -117,6 +116,7 @@ export default {
       },
     },
   },
+
   methods: {
     updateComment() {
       this.$emit("update", {
@@ -129,6 +129,10 @@ export default {
       this.name = null;
     },
 
+    isBig() {
+      const filters = this.numbers.filter((value) => value >= 2);
+      console.log(filters);
+    },
     // Getdetails( ) from google, reviews ratings etc....
     //call the function get details on click of this.currentRestaurant,
     // this.currentRestaurant then = to the result of getdetails to populate that field
