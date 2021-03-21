@@ -45,4 +45,11 @@ Acceptance Criteria
 Hardcoded Restaurants Reviews are not displaying, Address for google restaurants are not displaying.
 Restcard reviews needs to close when i click Close btn 
 
-Story5
+Story 5
+As a user I want to be able to select a restaurant based on the amount of stars 
+Acceptance Criteria
+1.A Component that allows me to select number of stars
+2.Based on the amount of stars selected, these restaurants will be displayed on Google map and Navbar
+3.A form or dropdown box is visible for me to select the number of stars. 
+4.
+5. 
