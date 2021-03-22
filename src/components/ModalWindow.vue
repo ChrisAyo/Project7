@@ -75,7 +75,7 @@ export default {
     lng: null,
     pointer: [],
     markers: [],
-    rating: "",
+    rating: 0.0,
     google: null,
     map: null,
     geometry: null,

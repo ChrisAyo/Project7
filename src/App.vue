@@ -212,7 +212,7 @@ export default {
           if (place.reviews) {
             this.currentReviews = this.createReviews(place.reviews);
             this.currentAddress = place.formatted_address;
-            // this.currentDetails = place;
+            payload.address = place.formatted_address;
           }
         }
       });
@@ -243,6 +243,7 @@ export default {
           lng: item.geometry.location.lng(),
           place_id: item.place_id,
           address: item.formatted_address,
+          rating: item.rating,
         });
       }
 

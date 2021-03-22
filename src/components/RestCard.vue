@@ -14,7 +14,7 @@
     <v-card-text>
       <v-row align="center" class="mx-0">
         <v-rating
-          :value="4.5"
+          :value="restaurant.rating"
           color="amber"
           dense
           half-increments
@@ -22,7 +22,7 @@
           size="14"
         ></v-rating>
 
-        <div class="grey--text ml-4">4.5 (413)</div>
+        <div class="grey--text ml-4">{{ restaurant.rating }}</div>
       </v-row>
 
       <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
@@ -31,13 +31,13 @@
     </v-card-text>
     <v-card-text>
       <div class="my-4 subtitle-1"><h2>Reviews</h2></div>
-      <div v-for="(restaurant, place_id) in restaurant.rating" :key="place_id">
+      <!-- <div v-for="(restaurant, place_id) in restaurant.rating" :key="place_id">
         <b>
           <u>{{ restaurant.userName }} </u>
         </b>
 
         Rating:{{ restaurant.stars }}- Comments {{ restaurant.comment }}
-      </div>
+      </div> -->
       <div v-for="(info, place_id) in reviews" :key="place_id">
         <b
           ><u>{{ info.userName }}:</u></b
