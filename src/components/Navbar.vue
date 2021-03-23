@@ -21,7 +21,7 @@
 
     <!-- V model= drawer is meant to display the drawer however without it its still working ?? why  -->
     <v-navigation-drawer v-model="drawer" app right>
-      <v-subheader> Resturants </v-subheader>
+      <v-subheader> Resturants <RatingBtn /> </v-subheader>
       <v-list dense>
         <div>
           <v-list-item-group active-class="primary">
@@ -44,8 +44,13 @@
   </nav>
 </template>
 
+
 <script>
+import RatingBtn from "./ratingBtn";
 export default {
+  components: {
+    RatingBtn,
+  },
   data: () => ({
     drawer: true,
     show: false,
