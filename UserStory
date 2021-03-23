@@ -51,6 +51,8 @@ Acceptance Criteria
 1.A Component that allows me to select and deselect a number of stars
     1a.A form or dropdown box is visible for me to select the number of stars
 2.Based on the amount of stars selected, these restaurants will be displayed on Google map and Navbar
-3.When i move the map i want those X stars only to be displayed.
+3.When I move the map I want those X stars only to be displayed.
 4.
 5. 
+
+Do I run the filter function before the map loads?
