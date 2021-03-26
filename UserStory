@@ -48,11 +48,13 @@ Restcard reviews needs to close when i click Close btn
 Story 5
 As a user I want to be able to select a restaurant based on the amount of stars 
 Acceptance Criteria
-1.A Component that allows me to select and deselect a number of stars
+1.A Component that allows me to select and deselect a number of stars (Two input fields)
     1a.A form or dropdown box is visible for me to select the number of stars
 2.Based on the amount of stars selected, these restaurants will be displayed on Google map and Navbar
 3.When I move the map I want those X stars only to be displayed.
 4.
 5. 
 
+How does data binding work?
+emitting selected numbers back to app.vue based on changes.
 Do I run the filter function before the map loads?
