@@ -11,6 +11,7 @@
             :min="min"
             hide-details
             class="align-center"
+            @change="sliderChange($event)"
           >
             <template v-slot:prepend>
               <v-text-field
@@ -31,7 +32,7 @@
                 single-line
                 type="number"
                 style="width: 60px"
-                @change="$set(range, 1, $event)"
+                @change="maxSliderChange($event)"
               ></v-text-field>
             </template>
           </v-range-slider>
@@ -48,6 +49,11 @@ export default {
       max: 5,
       range: [1, 5],
     };
+  },
+  methods: {
+    sliderChange(range) {
+      this.$emit("slider", range);
+    },
   },
 };
 </script>

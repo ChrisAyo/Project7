@@ -63,6 +63,7 @@ import GoogleMapInfoWindow from "./components/GoogleMapInfoWindow";
 import ModalWindow from "./components/ModalWindow";
 import RestCard from "./components/RestCard";
 import RestInfoVue from "./components/RestInfo.vue";
+
 // import StreetView from "./components/StreetView";
 // import review from "./assets/review.json";
 
@@ -257,7 +258,29 @@ export default {
   },
   computed: {
     restaurants() {
-      return [...this.localRestaurants, ...this.googleRestaurants];
+      let filteredRestaurants = [];
+      let minValue = 4;
+      let maxValue = 5;
+
+      for (let i = 0; i < this.localRestaurants.length; i++) {
+        const rating = this.localRestaurants[i].rating;
+
+        if (rating >= minValue && rating <= maxValue) {
+          filteredRestaurants.push(this.localRestaurants[i]);
+        }
+      }
+
+      for (let i = 0; i < this.googleRestaurants.length; i++) {
+        const rating = this.googleRestaurants[i].rating;
+
+        if (rating >= minValue && rating <= maxValue) {
+          filteredRestaurants.push(this.googleRestaurants[i]);
+        }
+      }
+
+      return filteredRestaurants;
+
+      // return [...this.localRestaurants, ...this.googleRestaurants];
       // find out way to call the computed function and then display...
     },
   },
