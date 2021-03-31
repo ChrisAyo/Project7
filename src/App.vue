@@ -6,6 +6,7 @@
       :google="google"
       :map="map"
       :geometry="geometry"
+      @rating="test"
     />
     <v-content>
       <v-container>
@@ -82,6 +83,8 @@ export default {
 
   data() {
     return {
+      minValue: 1,
+      maxValue: 5,
       currentDetails: [],
       currentAddress: "",
       currentReviews: [],
@@ -255,17 +258,21 @@ export default {
       this.currentReviews.push(payload);
       // this.googleRestaurants.ratings.push(payload);
     },
+
+    test(payload) {
+      this.minValue = payload[0];
+      this.maxValue = payload[1];
+      console.log(this.maxValue);
+    },
   },
   computed: {
     restaurants() {
       let filteredRestaurants = [];
-      let minValue = 4;
-      let maxValue = 5;
 
       for (let i = 0; i < this.localRestaurants.length; i++) {
         const rating = this.localRestaurants[i].rating;
 
-        if (rating >= minValue && rating <= maxValue) {
+        if (rating >= this.minValue && rating <= this.maxValue) {
           filteredRestaurants.push(this.localRestaurants[i]);
         }
       }
@@ -273,7 +280,7 @@ export default {
       for (let i = 0; i < this.googleRestaurants.length; i++) {
         const rating = this.googleRestaurants[i].rating;
 
-        if (rating >= minValue && rating <= maxValue) {
+        if (rating >= this.minValue && rating <= this.maxValue) {
           filteredRestaurants.push(this.googleRestaurants[i]);
         }
       }

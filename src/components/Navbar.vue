@@ -22,7 +22,7 @@
     <!-- V model= drawer is meant to display the drawer however without it its still working ?? why  -->
     <v-navigation-drawer v-model="drawer" app right>
       <v-subheader> Resturants <RatingBtn /> </v-subheader>
-      <RangeSlider />
+      <RangeSlider @rating="sliderChange" />
       <v-list dense>
         <div>
           <v-list-item-group active-class="primary">
@@ -76,6 +76,11 @@ export default {
   methods: {
     showInfo(restaurant) {
       this.$emit("select", restaurant);
+    },
+
+    sliderChange(range) {
+      this.$emit("rating", range);
+      // this.$emit("slider", range);
     },
   },
 

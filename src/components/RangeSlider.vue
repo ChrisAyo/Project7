@@ -21,7 +21,7 @@
                 single-line
                 type="number"
                 style="width: 60px"
-                @change="$set(range, 0, $event)"
+                @change="sliderChange($event)"
               ></v-text-field>
             </template>
             <template v-slot:append>
@@ -32,7 +32,7 @@
                 single-line
                 type="number"
                 style="width: 60px"
-                @change="maxSliderChange($event)"
+                @change="sliderChange($event)"
               ></v-text-field>
             </template>
           </v-range-slider>
@@ -52,7 +52,8 @@ export default {
   },
   methods: {
     sliderChange(range) {
-      this.$emit("slider", range);
+      this.$emit("rating", range);
+      // this.$emit("slider", range);
     },
   },
 };

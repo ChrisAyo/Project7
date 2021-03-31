@@ -58,3 +58,5 @@ Acceptance Criteria
 How does data binding work?
 emitting selected numbers back to app.vue based on changes.
 Do I run the filter function before the map loads?
+
+Find a way to add numbers above the range slider.
