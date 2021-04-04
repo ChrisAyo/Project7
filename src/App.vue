@@ -256,7 +256,7 @@ export default {
 
     addComments(payload) {
       this.currentReviews.push(payload);
-      // this.googleRestaurants.ratings.push(payload);
+      // use the rating number to create a new average rating and set it to this.current/restaurant.rating what it is actively looking at.
     },
 
     test(payload) {
