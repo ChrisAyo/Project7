@@ -6,7 +6,7 @@
       :google="google"
       :map="map"
       :geometry="geometry"
-      @rating="test"
+      @rating="filterRating"
     />
     <v-content>
       <v-container>
@@ -42,8 +42,6 @@
           <RestCard
             @update="addComments"
             :restaurant="currentRestaurant"
-            :name="selectedResturantName"
-            :address="address"
             :reviews="currentReviews"
             :googleAddress="currentAddress"
             :details="currentDetails"
@@ -93,7 +91,6 @@ export default {
       markers: [],
       restaurantName: "",
       dialog: false,
-      selectedResturantName: "",
       address: "",
       currentRestaurant: null,
       google: null,
@@ -259,7 +256,7 @@ export default {
       // use the rating number to create a new average rating and set it to this.current/restaurant.rating what it is actively looking at.
     },
 
-    test(payload) {
+    filterRating(payload) {
       this.minValue = payload[0];
       this.maxValue = payload[1];
       console.log(this.maxValue);

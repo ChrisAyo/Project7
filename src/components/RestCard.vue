@@ -27,17 +27,17 @@
 
       <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
       <!-- <div class="my-4 subtitle-1">{{ googleAddress }}</div> -->
-      <!-- <div class="my-4 subtitle-1">{{ googleAddress }}</div> -->
     </v-card-text>
     <v-card-text>
       <div class="my-4 subtitle-1"><h2>Reviews</h2></div>
-      <!-- <div v-for="(restaurant, place_id) in restaurant.rating" :key="place_id">
+      <!--Two loops for displaying ratings?</div> -->
+      <div v-for="(restaurant, place_id) in restaurant.ratings" :key="place_id">
         <b>
           <u>{{ restaurant.userName }} </u>
         </b>
 
         Rating:{{ restaurant.stars }}- Comments {{ restaurant.comment }}
-      </div> -->
+      </div>
       <div v-for="(info, place_id) in reviews" :key="place_id">
         <b
           ><u>{{ info.userName }}:</u></b
@@ -64,7 +64,8 @@
       </v-col>
 
       <v-card-actions>
-        <v-btn color="deep darken-1" text @click="isBig()"> Close </v-btn>
+        <!-- Make the close button actually close the window -->
+        <v-btn color="deep darken-1" text> Close </v-btn>
         <v-btn color="deep darken-1" text @click="updateComment()">
           Save
         </v-btn>
@@ -87,7 +88,6 @@ export default {
     comment: "",
     stars: null,
     name: "",
-    numbers: [1, 2, 4, 5, 6, 8, 8, 1, 5, 3, 4, 2, 8, 0],
   }),
   props: {
     details: {
@@ -99,16 +99,12 @@ export default {
     googleAddress: {
       type: [String],
     },
-    // name: {
+    // address: {
     //   type: [Object, String],
-    //   default: {},
+    //   default() {
+    //     return {};
+    //   },
     // },
-    address: {
-      type: [Object, String],
-      default() {
-        return {};
-      },
-    },
     restaurant: {
       type: Object,
       default() {
@@ -133,11 +129,6 @@ export default {
       this.stars = null;
       this.comment = null;
       this.name = null;
-    },
-
-    isBig() {
-      const filters = this.numbers.filter((value) => value >= 2);
-      console.log(filters);
     },
     // Getdetails( ) from google, reviews ratings etc....
     //call the function get details on click of this.currentRestaurant,

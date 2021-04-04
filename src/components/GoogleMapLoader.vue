@@ -40,14 +40,12 @@ export default {
         apiKey: this.apiKey,
       });
       this.google = googleMapApi;
-      // console.log("hello");
       this.initializeMap();
     }
   },
   methods: {
     initializeMap() {
       const mapContainer = this.$refs.googleMap;
-      // if (!this.$refs.googleMap.textContent) {
       this.map = new this.google.maps.Map(mapContainer, this.mapConfig);
       this.geometry = this.google.maps.geometry;
       this.placesService = new this.google.maps.places.PlacesService(this.map);
@@ -57,7 +55,6 @@ export default {
         placesService: this.placesService,
         geometry: this.geometry,
       });
-      // this.$emit("run", this.initializeMap());
     },
   },
 };
