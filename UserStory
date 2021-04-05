@@ -62,3 +62,6 @@ Do I run the filter function before the map loads?
 Find a way to add numbers above the range slider.
 
 Computed function for rating, to return average scores 
+
+Story 6
+As a user I want to be able to leave a review, score and comment, as a result the score is updated based on my rating.

@@ -23,6 +23,10 @@
         ></v-rating>
 
         <div class="grey--text ml-4">{{ restaurant.rating }}</div>
+
+        <div v-if="restaurant.ratings" class="grey--text ml-4">
+          ({{ restaurant.ratings.length }})
+        </div>
       </v-row>
 
       <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
@@ -38,12 +42,12 @@
 
         Rating:{{ restaurant.stars }}- Comments {{ restaurant.comment }}
       </div>
-      <div v-for="(info, place_id) in reviews" :key="place_id">
+      <!-- <div v-for="(info, place_id) in reviews" :key="place_id">
         <b
           ><u>{{ info.userName }}:</u></b
         >
         Rating:{{ info.stars }}- Comments {{ info.comment }}
-      </div>
+      </div> -->
     </v-card-text>
     <!-- <v-card-title>{{ reviews[0].rating }}</v-card-title> -->
 
@@ -120,6 +124,7 @@ export default {
   },
 
   methods: {
+    // stars can only be between 1-5 the user can't input more
     updateComment() {
       this.$emit("update", {
         stars: this.stars,
@@ -130,9 +135,6 @@ export default {
       this.comment = null;
       this.name = null;
     },
-    // Getdetails( ) from google, reviews ratings etc....
-    //call the function get details on click of this.currentRestaurant,
-    // this.currentRestaurant then = to the result of getdetails to populate that field
   },
 };
 </script>

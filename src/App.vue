@@ -44,7 +44,6 @@
             :restaurant="currentRestaurant"
             :reviews="currentReviews"
             :googleAddress="currentAddress"
-            :details="currentDetails"
           />
         </v-dialog>
         <ModalWindow @submit="updateRestaurant" />
@@ -63,9 +62,6 @@ import ModalWindow from "./components/ModalWindow";
 import RestCard from "./components/RestCard";
 import RestInfoVue from "./components/RestInfo.vue";
 
-// import StreetView from "./components/StreetView";
-// import review from "./assets/review.json";
-
 export default {
   name: "App",
 
@@ -76,14 +72,13 @@ export default {
     GoogleMapInfoWindow,
     ModalWindow,
     RestCard,
-    // StreetView,
   },
 
   data() {
     return {
       minValue: 1,
       maxValue: 5,
-      currentDetails: [],
+
       currentAddress: "",
       currentReviews: [],
       localRestaurants: jsonRestaurants,
@@ -91,7 +86,7 @@ export default {
       markers: [],
       restaurantName: "",
       dialog: false,
-      address: "",
+
       currentRestaurant: null,
       google: null,
       map: null,
@@ -143,7 +138,6 @@ export default {
     },
     mapLoaded({ google, map, placesService, geometry }) {
       //when the map is idle run nearbySearch for new location, (Event Listner)
-      //consider renaming places to placeService
       this.google = google;
       this.map = map;
       this.placesService = placesService;
@@ -159,7 +153,7 @@ export default {
 
         this.removeMarkers();
 
-        // another function that lists through current list of google markers - and sets the map to null
+        // function that lists through current list of google markers - and sets the map to null
         placesService.nearbySearch(request, this.nearbySearchCallback);
       });
     },
@@ -177,7 +171,6 @@ export default {
           });
           this.markers.push(marker);
         }
-        // this.googleRestaurants = results;
         this.googleRestaurants = this.createRestaurants(results);
       }
     },
@@ -188,37 +181,39 @@ export default {
     },
     chosen(payload) {
       this.currentAddress = "";
-      this.currentDetails = [];
       this.currentReviews = [];
       this.currentRestaurant = payload;
       this.dialog = true;
-      const request = {
-        placeId: payload.place_id,
-        fields: [
-          "name",
-          "formatted_address",
-          "place_id",
-          "geometry",
-          "reviews",
-          "rating",
-          "formatted_phone_number",
-        ],
-      };
-      // display the data inside to components, look inside Restcard props. v-for loop to dispaly the arrays
-      // Data create currentReviews - then set it inside chosen place.reviews
-      // rest card component define a new prop called reviews
-      // placesServices needs to be defined here i need to give this application access.
-      this.placesService.getDetails(request, (place, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          if (place.reviews) {
-            this.currentReviews = this.createReviews(place.reviews);
-            this.currentAddress = place.formatted_address;
-            payload.address = place.formatted_address;
+      if (!this.currentRestaurant.ratings) {
+        const request = {
+          placeId: payload.place_id,
+          fields: [
+            "name",
+            "formatted_address",
+            "place_id",
+            "geometry",
+            "reviews",
+            "rating",
+            "formatted_phone_number",
+          ],
+        };
+        // display the data inside to components, look inside Restcard props. v-for loop to dispaly the arrays
+        // Data create currentReviews - then set it inside chosen place.reviews
+        // rest card component define a new prop called reviews
+        // placesServices needs to be defined here i need to give this application access.
+        this.placesService.getDetails(request, (place, status) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            if (place.reviews) {
+              let reviews = this.createReviews(place.reviews);
+              this.currentAddress = place.formatted_address;
+              payload.address = place.formatted_address;
+              // this.currentReviews = reviews;
+              this.currentRestaurant.ratings = reviews;
+            }
           }
-        }
-      });
+        });
+      }
     },
-    // data binding?
     createReviews(reviews) {
       const result = [];
       for (let i = 0; i < reviews.length; i++) {
@@ -252,7 +247,15 @@ export default {
     },
 
     addComments(payload) {
-      this.currentReviews.push(payload);
+      this.currentRestaurant.ratings.push(payload);
+      let totalSum = 0;
+      for (let i = 0; i < this.currentRestaurant.ratings.length; i++) {
+        totalSum = totalSum + this.currentRestaurant.ratings[i].stars;
+      }
+      this.currentRestaurant.rating =
+        totalSum / this.currentRestaurant.ratings.length;
+
+      // this.currentReviews.push(payload);
       // use the rating number to create a new average rating and set it to this.current/restaurant.rating what it is actively looking at.
     },
 
