@@ -19,12 +19,6 @@
                   label="Restaurant Name"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12">
-                <v-text-field v-model="address" label="Address"></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field v-model="rating" label="Ratings"></v-text-field>
-              </v-col>
             </v-row>
           </v-container>
 

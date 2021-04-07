@@ -8,35 +8,34 @@
       :geometry="geometry"
       @rating="filterRating"
     />
-    <v-content>
-      <v-container>
-        <GoogleMapLoader
-          :restaurant="restaurants"
-          @loaded="mapLoaded"
-          :mapConfig="{ center: { lat: 51.512829, lng: -0.128001 }, zoom: 12 }"
-          apiKey="AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk"
-        >
-          <template slot-scope="{ google, map }">
-            <template v-for="restaurant in restaurants">
-              <GoogleMapInfoWindow
-                :google="google"
-                :map="map"
-                :content="restaurant.restaurantName"
-                :key="restaurant.lat"
-              >
-                <template slot-scope="{ infoWindow }">
-                  <GoogleMapMarker
-                    :marker="restaurant"
-                    :google="google"
-                    :map="map"
-                    :info-window="infoWindow"
-                  />
-                </template>
-              </GoogleMapInfoWindow>
-            </template>
+    <v-content class="fill-height">
+      <GoogleMapLoader
+        :restaurant="restaurants"
+        @loaded="mapLoaded"
+        :mapConfig="{ center: { lat: 51.512829, lng: -0.128001 }, zoom: 12 }"
+        apiKey="AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk"
+      >
+        <template slot-scope="{ google, map }">
+          <template v-for="restaurant in restaurants">
+            <GoogleMapInfoWindow
+              :google="google"
+              :map="map"
+              :content="restaurant.restaurantName"
+              :key="restaurant.lat"
+            >
+              <template slot-scope="{ infoWindow }">
+                <GoogleMapMarker
+                  :marker="restaurant"
+                  :google="google"
+                  :map="map"
+                  :info-window="infoWindow"
+                />
+              </template>
+            </GoogleMapInfoWindow>
           </template>
-        </GoogleMapLoader>
-      </v-container>
+        </template>
+      </GoogleMapLoader>
+
       <v-container>
         <v-dialog v-model="dialog">
           <RestCard
@@ -46,7 +45,6 @@
             :googleAddress="currentAddress"
           />
         </v-dialog>
-        <ModalWindow @submit="updateRestaurant" />
       </v-container>
     </v-content>
   </v-app>
@@ -250,10 +248,13 @@ export default {
       this.currentRestaurant.ratings.push(payload);
       let totalSum = 0;
       for (let i = 0; i < this.currentRestaurant.ratings.length; i++) {
-        totalSum = totalSum + this.currentRestaurant.ratings[i].stars;
+        totalSum = parseInt(this.currentRestaurant.ratings[i].stars) + totalSum;
+        console.log(totalSum);
       }
-      this.currentRestaurant.rating =
-        totalSum / this.currentRestaurant.ratings.length;
+
+      this.currentRestaurant.rating = Math.floor(
+        totalSum / this.currentRestaurant.ratings.length
+      );
 
       // this.currentReviews.push(payload);
       // use the rating number to create a new average rating and set it to this.current/restaurant.rating what it is actively looking at.
@@ -293,3 +294,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.fill-height {
+  height: calc(100vh - 64px);
+}
+</style>

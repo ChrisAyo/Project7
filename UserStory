@@ -64,4 +64,11 @@ Find a way to add numbers above the range slider.
 Computed function for rating, to return average scores 
 
 Story 6
-As a user I want to be able to leave a review, score and comment, as a result the score is updated based on my rating.
+As a user I want to be able to leave a review for a restaurant.
+1. There will be save button
+2. The save button updates the restaurant 
+    2a.Update average score 
+    2b.Updates the total amount of ratings.
+    2c.Comments, username and Stars are updated on the Rest card.
+in app .vue
+     <ModalWindow @submit="updateRestaurant" />

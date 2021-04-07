@@ -1,7 +1,7 @@
 <template>
   <!-- <v-app> -->
-  <nav>
-    <v-app-bar app color="indigo" dark>
+  <div>
+    <v-app-bar clipped-right app color="indigo" dark>
       <v-toolbar-title class="white--text">
         <span class="font-weight-light">Ola's</span>
         &nbsp;
@@ -20,7 +20,7 @@
     <!-- </v-toolbar> -->
 
     <!-- V model= drawer is meant to display the drawer however without it its still working ?? why  -->
-    <v-navigation-drawer v-model="drawer" app right>
+    <v-navigation-drawer v-model="drawer" app clipped right>
       <v-subheader> Resturants <RatingBtn /> </v-subheader>
       <RangeSlider @rating="sliderChange" />
       <v-list dense>
@@ -42,7 +42,7 @@
         </div>
       </v-list>
     </v-navigation-drawer>
-  </nav>
+  </div>
 </template>
 
 
