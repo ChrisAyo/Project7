@@ -8,6 +8,8 @@
         <span>Resturant Review</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <ModalWindow />
+
       <!-- <v-btn flat color="grey"> -->
       <!-- click.stop and click gives me the same reaction
       and also its pushing everything to one side, and not shifting-->
@@ -49,10 +51,12 @@
 <script>
 import RatingBtn from "./ratingBtn";
 import RangeSlider from "./RangeSlider";
+import ModalWindow from "./ModalWindow";
 export default {
   components: {
     RatingBtn,
     RangeSlider,
+    ModalWindow,
   },
   data: () => ({
     drawer: true,

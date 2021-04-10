@@ -22,7 +22,7 @@
             </v-row>
           </v-container>
 
-          <v-container>
+          <v-content class="fill-height">
             <GoogleMapLoader
               @loaded="mapLoaded"
               :mapConfig="{
@@ -42,7 +42,7 @@
                 </template>
               </template>
             </GoogleMapLoader>
-          </v-container>
+          </v-content>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -102,4 +102,8 @@ export default {
   },
 };
 </script>
-
+ <style >
+.fill-height {
+  height: calc(100vh - 52px);
+}
+</style>
