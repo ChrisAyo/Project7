@@ -53,7 +53,6 @@ export default {
   methods: {
     sliderChange(range) {
       this.$emit("rating", range);
-      // this.$emit("slider", range);
     },
   },
 };

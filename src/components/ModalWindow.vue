@@ -8,7 +8,7 @@
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">User Profile</span>
+          <span class="headline">Add New Restaurant</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -22,7 +22,7 @@
             </v-row>
           </v-container>
 
-          <v-content class="fill-height">
+          <v-container>
             <GoogleMapLoader
               @loaded="mapLoaded"
               :mapConfig="{
@@ -42,7 +42,7 @@
                 </template>
               </template>
             </GoogleMapLoader>
-          </v-content>
+          </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -78,12 +78,14 @@ export default {
 
   methods: {
     select() {
-      this.$emit("submit", {
+      this.$emit("newRestSubmit", {
         name: this.restaurantName,
         lat: parseFloat(this.lat),
         lng: parseFloat(this.lng),
         address: this.address,
+        rating: 3,
       });
+      console.log(this.restaurantName);
       this.restaurantName = null;
       this.lat = null;
       this.lng = null;
@@ -103,7 +105,7 @@ export default {
 };
 </script>
  <style >
-.fill-height {
+/* .fill-height {
   height: calc(100vh - 52px);
-}
+} */
 </style>

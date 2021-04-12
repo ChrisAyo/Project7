@@ -7,6 +7,7 @@
       :map="map"
       :geometry="geometry"
       @rating="filterRating"
+      @newRestSubmit="updateRestaurant"
     />
     <v-content class="fill-height">
       <GoogleMapLoader
@@ -175,6 +176,7 @@ export default {
 
     updateRestaurant(payload) {
       payload.place_id = Date.now();
+
       this.localRestaurants.push(payload);
     },
     chosen(payload) {
@@ -263,11 +265,12 @@ export default {
     filterRating(payload) {
       this.minValue = payload[0];
       this.maxValue = payload[1];
-      console.log(this.maxValue);
+      console.log(this.minValue, this.maxValue);
     },
   },
   computed: {
     restaurants() {
+      console.log("Start");
       let filteredRestaurants = [];
 
       for (let i = 0; i < this.localRestaurants.length; i++) {
@@ -286,6 +289,7 @@ export default {
         }
       }
 
+      console.log("End");
       return filteredRestaurants;
 
       // return [...this.localRestaurants, ...this.googleRestaurants];

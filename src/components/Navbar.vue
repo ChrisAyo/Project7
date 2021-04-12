@@ -8,8 +8,7 @@
         <span>Resturant Review</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <ModalWindow />
-
+      <ModalWindow @newRestSubmit="newRestCreated" />
       <!-- <v-btn flat color="grey"> -->
       <!-- click.stop and click gives me the same reaction
       and also its pushing everything to one side, and not shifting-->
@@ -23,7 +22,7 @@
 
     <!-- V model= drawer is meant to display the drawer however without it its still working ?? why  -->
     <v-navigation-drawer v-model="drawer" app clipped right>
-      <v-subheader> Resturants <RatingBtn /> </v-subheader>
+      <v-subheader> Resturants </v-subheader>
       <RangeSlider @rating="sliderChange" />
       <v-list dense>
         <div>
@@ -49,12 +48,10 @@
 
 
 <script>
-import RatingBtn from "./ratingBtn";
 import RangeSlider from "./RangeSlider";
 import ModalWindow from "./ModalWindow";
 export default {
   components: {
-    RatingBtn,
     RangeSlider,
     ModalWindow,
   },
@@ -86,6 +83,10 @@ export default {
       this.$emit("rating", range);
       // this.$emit("slider", range);
     },
+
+    newRestCreated(restInfomartion) {
+      this.$emit("newRestSubmit", restInfomartion);
+    },
   },
 
   // Getdetails( ) from google, reviews ratings etc....
@@ -93,3 +94,8 @@ export default {
   // this.currentRestaurant then = to the result of getdetails to populate that field
 };
 </script>
+<style >
+.fill-height {
+  height: calc(100vh - 52px);
+}
+</style>
