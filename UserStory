@@ -72,3 +72,7 @@ As a user I want to be able to leave a review for a restaurant.
     2c.Comments, username and Stars are updated on the Rest card.
 in app .vue
      <ModalWindow @submit="updateRestaurant" />
+
+     restrict the min and max on the side.
+     computed function.
+     
