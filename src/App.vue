@@ -36,7 +36,6 @@
           </template>
         </template>
       </GoogleMapLoader>
-
       <v-container>
         <v-dialog v-model="dialog">
           <RestCard
@@ -44,6 +43,7 @@
             :restaurant="currentRestaurant"
             :reviews="currentReviews"
             :googleAddress="currentAddress"
+            @closeWindow="closeModal"
           />
         </v-dialog>
       </v-container>
@@ -257,7 +257,7 @@ export default {
       this.currentRestaurant.rating = Math.floor(
         totalSum / this.currentRestaurant.ratings.length
       );
-
+      // this.dialog = false;
       // this.currentReviews.push(payload);
       // use the rating number to create a new average rating and set it to this.current/restaurant.rating what it is actively looking at.
     },
@@ -267,7 +267,11 @@ export default {
       this.maxValue = payload[1];
       console.log(this.minValue, this.maxValue);
     },
+    closeModal() {
+      this.dialog = false;
+    },
   },
+
   computed: {
     restaurants() {
       console.log("Start");

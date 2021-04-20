@@ -76,3 +76,12 @@ in app .vue
      restrict the min and max on the side.
      computed function.
      
+Story 7
+
+Clicking Close on add Restaurant window closes the window
+Selecting a place on the map updates the restaurant address field.
+
+lat: 51.512829, lng: -0.128001
+{ lat: 51.512829, lng: -0.128001 }
+
+Rest card no info added should send error and not let it submit. 

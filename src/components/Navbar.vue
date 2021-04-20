@@ -9,18 +9,11 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <ModalWindow @newRestSubmit="newRestCreated" />
-      <!-- <v-btn flat color="grey"> -->
-      <!-- click.stop and click gives me the same reaction
-      and also its pushing everything to one side, and not shifting-->
-
       <v-app-bar-nav-icon
         @click.stop="drawer = !drawer"
         color="white"
       ></v-app-bar-nav-icon>
     </v-app-bar>
-    <!-- </v-toolbar> -->
-
-    <!-- V model= drawer is meant to display the drawer however without it its still working ?? why  -->
     <v-navigation-drawer v-model="drawer" app clipped right>
       <v-subheader> Resturants </v-subheader>
       <RangeSlider @rating="sliderChange" />
