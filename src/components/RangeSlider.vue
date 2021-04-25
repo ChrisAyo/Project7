@@ -1,11 +1,14 @@
 <template>
   <v-card flat color="transparent">
-    <v-subheader>Min and max range slider</v-subheader>
+    <v-subheader>Restaurant Ratings Filter</v-subheader>
 
     <v-card-text>
       <v-row>
         <v-col class="px-4">
+          <p>Min rating</p>
           <v-text-field
+            min="1"
+            :max="max"
             v-model="range[0]"
             class="mt-0 pt-0"
             hide-details
@@ -14,8 +17,10 @@
             style="width: 60px"
             @change="sliderChange"
           ></v-text-field>
-
+          <p>Max rating</p>
           <v-text-field
+            max="5"
+            :min="min"
             v-model="range[1]"
             class="mt-0 pt-0"
             hide-details

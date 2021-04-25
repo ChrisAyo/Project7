@@ -17,6 +17,13 @@
         apiKey="AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk"
       >
         <template slot-scope="{ google, map }">
+          <template v-if="currentPosition">
+            <GoogleMapMarker
+              :marker="currentPosition"
+              :google="google"
+              :map="map"
+            />
+          </template>
           <template v-for="restaurant in restaurants">
             <GoogleMapInfoWindow
               :google="google"
@@ -75,6 +82,7 @@ export default {
 
   data() {
     return {
+      currentPosition: null,
       minValue: 1,
       maxValue: 5,
 
@@ -99,17 +107,23 @@ export default {
   },
 
   methods: {
-    getLocation() {
+    getLocation(map) {
       if (navigator.geolocation) {
         var options = {
           enableHighAccuracy: true,
           timeout: 5000,
           maximumAge: 0,
         };
-
+        const self = this;
         function success(pos) {
           var crd = pos.coords;
-
+          map.setCenter({ lat: crd.latitude, lng: crd.longitude });
+          self.currentPosition = {
+            lat: crd.latitude,
+            lng: crd.longitude,
+            icon: true,
+          };
+          console.log(this);
           console.log("Your current position is:");
           console.log(`Latitude : ${crd.latitude}`);
           console.log(`Longitude: ${crd.longitude}`);
@@ -141,7 +155,7 @@ export default {
       this.map = map;
       this.placesService = placesService;
       this.geometry = geometry;
-      this.getLocation();
+      this.getLocation(map);
 
       map.addListener("idle", () => {
         const request = {
@@ -159,24 +173,22 @@ export default {
 
     nearbySearchCallback(results, status) {
       console.log(results, status);
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-          const restaurant = results[i];
-          // add marker array in data this.markers.push marker so the markers can be used and cleared.
-          const marker = new google.maps.Marker({
-            map: this.map,
-            position: restaurant.geometry.location,
-            label: restaurant.name,
-          });
-          this.markers.push(marker);
-        }
-        this.googleRestaurants = this.createRestaurants(results);
+
+      for (var i = 0; i < results.length; i++) {
+        const restaurant = results[i];
+        // add marker array in data this.markers.push marker so the markers can be used and cleared.
+        const marker = new google.maps.Marker({
+          map: this.map,
+          position: restaurant.geometry.location,
+          label: restaurant.name,
+        });
+        this.markers.push(marker);
       }
+      this.googleRestaurants = this.createRestaurants(results);
     },
 
     updateRestaurant(payload) {
       payload.place_id = Date.now();
-
       this.localRestaurants.push(payload);
     },
     chosen(payload) {
@@ -274,7 +286,6 @@ export default {
 
   computed: {
     restaurants() {
-      console.log("Start");
       let filteredRestaurants = [];
 
       for (let i = 0; i < this.localRestaurants.length; i++) {
@@ -292,12 +303,7 @@ export default {
           filteredRestaurants.push(this.googleRestaurants[i]);
         }
       }
-
-      console.log("End");
       return filteredRestaurants;
-
-      // return [...this.localRestaurants, ...this.googleRestaurants];
-      // find out way to call the computed function and then display...
     },
   },
 };
