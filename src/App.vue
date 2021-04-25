@@ -66,7 +66,6 @@ import Navbar from "./components/Navbar";
 import GoogleMapInfoWindow from "./components/GoogleMapInfoWindow";
 import ModalWindow from "./components/ModalWindow";
 import RestCard from "./components/RestCard";
-import RestInfoVue from "./components/RestInfo.vue";
 
 export default {
   name: "App",
@@ -172,8 +171,6 @@ export default {
     },
 
     nearbySearchCallback(results, status) {
-      console.log(results, status);
-
       for (var i = 0; i < results.length; i++) {
         const restaurant = results[i];
         // add marker array in data this.markers.push marker so the markers can be used and cleared.
@@ -209,17 +206,13 @@ export default {
             "formatted_phone_number",
           ],
         };
-        // display the data inside to components, look inside Restcard props. v-for loop to dispaly the arrays
-        // Data create currentReviews - then set it inside chosen place.reviews
-        // rest card component define a new prop called reviews
-        // placesServices needs to be defined here i need to give this application access.
+
         this.placesService.getDetails(request, (place, status) => {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             if (place.reviews) {
               let reviews = this.createReviews(place.reviews);
               this.currentAddress = place.formatted_address;
               payload.address = place.formatted_address;
-              // this.currentReviews = reviews;
               this.currentRestaurant.ratings = reviews;
             }
           }
