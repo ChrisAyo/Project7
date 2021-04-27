@@ -8,7 +8,7 @@
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">User Profile</span>
+          <span class="headline">Add New Restaurant</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -19,51 +19,30 @@
                   label="Restaurant Name"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                  type="number"
-                  step="any"
-                  v-model="lat"
-                  label="Lat"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
-                  type="number"
-                  step="any"
-                  v-model="lng"
-                  label="Lng"
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field v-model="address" label="Address"></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field v-model="rating" label="Ratings"></v-text-field>
-              </v-col>
-              <!-- <v-col
-                cols="12"
-                sm="6"
-              >
-                <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
-                  required
-                ></v-select>
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-              >
-                <v-autocomplete
-                  :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                  label="Interests"
-                  multiple
-                ></v-autocomplete>
-              </v-col> -->
             </v-row>
           </v-container>
-          <!-- <small>*indicates required field</small> -->
+
+          <v-container>
+            <GoogleMapLoader
+              @loaded="mapLoaded"
+              :mapConfig="{
+                center: { lat: 51.512829, lng: -0.128001 },
+                zoom: 12,
+              }"
+              apiKey="AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk"
+            >
+              <template slot-scope="{ google, map }">
+                <template v-for="marker in markers">
+                  <GoogleMapMarker
+                    :marker="marker"
+                    :google="google"
+                    :map="map"
+                    :key="marker.lat"
+                  />
+                </template>
+              </template>
+            </GoogleMapLoader>
+          </v-container>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -77,52 +56,47 @@
   </v-row>
 </template>
 <script>
+import GoogleMapLoader from "./GoogleMapLoader.vue";
+import GoogleMapMarker from "./GoogleMapMarker";
 export default {
-  // props:{
-  //    google: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  //   map: {
-  //     type: Object,
-  //     required: true,
-  //   },
-  // },
+  components: { GoogleMapLoader, GoogleMapMarker },
   data: () => ({
     dialog: false,
     restaurantName: "",
     address: "",
     lat: null,
     lng: null,
-    rating: "",
+    markers: [],
+    rating: 0.0,
+    google: null,
+    map: null,
+    geometry: null,
+    placesService: null,
   }),
-
-  // mounted(){
-  //   new google.maps.places.Autocomplete(document.getElementById("autocomplete"))
-
-  // },
 
   methods: {
     select() {
-      this.$emit("submit", {
+      this.$emit("newRestSubmit", {
         name: this.restaurantName,
         lat: parseFloat(this.lat),
         lng: parseFloat(this.lng),
-        // address: this.address,
-        rating: this.ratings,
+        address: this.address,
+        rating: 3,
       });
       this.restaurantName = null;
       this.lat = null;
       this.lng = null;
       this.address = null;
-      this.ratings = null;
+      this.rating = null;
+      this.markers = [];
       this.dialog = false;
-
-      //  var obj = $.parseJSON( '{ "name": "John" }')
-      // var newObj =  {
-      // 'restaurantName': $('[name="First"]').val(),
-      // 'lat': $('[name="Middle"]').val(),
-      // 'lng': $('[name="Last"]').val(),
+    },
+    mapLoaded({ google, map }) {
+      google.maps.event.addListener(map, "click", (event) => {
+        this.lat = event.latLng.lat();
+        this.lng = event.latLng.lng();
+        this.markers = [{ lat: this.lat, lng: this.lng }];
+      });
     },
   },
 };

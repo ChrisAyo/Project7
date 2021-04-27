@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div class="google-map" ref="googleMap"></div>
+  <div class="google-map" ref="googleMap">
     <template v-if="Boolean(this.google) && Boolean(this.map)">
       <slot :google="google" :map="map" />
     </template>
@@ -17,7 +16,6 @@ export default {
       required: true,
     },
     restaurant: {
-      // is reviews accesible globally ??
       type: Array,
       default() {
         return [];
@@ -46,7 +44,6 @@ export default {
   methods: {
     initializeMap() {
       const mapContainer = this.$refs.googleMap;
-      // if (!this.$refs.googleMap.textContent) {
       this.map = new this.google.maps.Map(mapContainer, this.mapConfig);
       this.geometry = this.google.maps.geometry;
       this.placesService = new this.google.maps.places.PlacesService(this.map);
@@ -56,39 +53,6 @@ export default {
         placesService: this.placesService,
         geometry: this.geometry,
       });
-
-      // const pyrmont = { lat: 51.512829, lng: -0.128001 };
-      // const service = new google.maps.places.PlacesService(this.map);
-      // service.nearbySearch(
-      //   { location: pyrmont, radius: 50, type: "restaurant" },
-      //   (results, status) => {
-      //     if (status !== "OK") return;
-      //     for (var i = 0; i < results.length; i++) {
-      //       var restaurant = results[i];
-      //       const marker = new google.maps.Marker({
-      //         map: this.map,
-      //         position: restaurant.geometry.location,
-      //         label: restaurant.name,
-      //       });
-
-      //       // var myLatlng = new google.maps.LatLng(restaurant., res);
-      //       // var marker = new google.maps.Marker({
-      //       //   position: myLatlng,
-      //       //   title: restaurant.title,
-      //       // });
-
-      //       // To add the marker to the map, call setMap();
-
-      //       //add event listent
-      //       // marker.addListener("click", () => {
-      //       //   console.log("hello");
-      //       //   // this.infoWindow.open(this.map, this.gMarker);
-      //       // });
-      //       // marker.setMap(this.map);
-      //     }
-
-      //   }
-      // );
     },
   },
 };
@@ -96,7 +60,9 @@ export default {
 
 <style>
 .google-map {
-  height: 500px;
+  height: 100%;
   width: 100%;
+  min-height: 500px;
+  min-width: 100%;
 }
 </style>

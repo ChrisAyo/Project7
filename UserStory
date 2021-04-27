@@ -1,0 +1,89 @@
+Story 1
+As a user I would like to add a restaurant so that I can include restaurants that doesn't exists.
+Acceptance Criteria
+1. Button on main page to add restaurant 
+2. Clicking on the button opens a modal window
+3. Modal window has required input fields for restaurant (name,address,etc)
+4. Clicking add/save restaurant will populate the nav bar and the main google maps 
+Yes this works 
+
+As a user i want to be able to add a review, so that other users can find my thoughts. 
+
+
+Story 3
+As a user I want to be able to select a point on the map so I don't have to manual input the details
+Acceptance Criteria
+1.Clicking on button opens a modal window
+2.Google Map is displayed in Modal window
+3.Clicking on google maps will add a marker 
+4.Clicking on another location on the map will add another marker and remove the old one.
+5.Modal window only has an input field for restaurantName
+6.Clicking add/save restaurant will populate the nav bar and the main google maps 
+
+What do i need to display google map in Modal window? - done
+Data return in modal window, why do i need Google, etc. 
+
+Callback function research (async..often used )
+
+Find a way to remove markers, currently i am giving them lat and lng and setting it as an object. 
+Try and replicate what i did previously with gmarker on App.vue and restaurant.
+
+Work on adding google street view images to the restaurant
+Work on adding user requirements to modal window so it rejects the wrong choices
+Filter array - change the value form input - On the value change 
+clicking on the google maps marker will autocomplete the address field
+
+Story 4
+As user I want to see the Google Street View photo via the corresponding API.
+Acceptance Criteria
+1.A Component that displays the streetView when selected 
+1.Clicking on the restaurants will open rest card
+2.Restcard will display the image of the current restaurant selected 
+3.
+4.
+
+Hardcoded Restaurants Reviews are not displaying, Address for google restaurants are not displaying.
+Restcard reviews needs to close when i click Close btn 
+
+Story 5
+As a user I want to be able to select a restaurant based on the amount of stars 
+Acceptance Criteria
+1.A Component that allows me to select and deselect a number of stars (Two input fields)
+    1a.A form or dropdown box is visible for me to select the number of stars
+2.Based on the amount of stars selected, these restaurants will be displayed on Google map and Navbar
+3.When I move the map I want those X stars only to be displayed.
+4.
+5. 
+
+How does data binding work?
+emitting selected numbers back to app.vue based on changes.
+Do I run the filter function before the map loads?
+
+Find a way to add numbers above the range slider.
+
+Computed function for rating, to return average scores 
+
+Story 6
+As a user I want to be able to leave a review for a restaurant.
+1. There will be save button
+2. The save button updates the restaurant 
+    2a.Update average score 
+    2b.Updates the total amount of ratings.
+    2c.Comments, username and Stars are updated on the Rest card.
+in app .vue
+     <ModalWindow @submit="updateRestaurant" />
+
+     restrict the min and max on the side.
+     computed function.
+     
+Story 7
+
+Clicking Close on add Restaurant window closes the window
+Selecting a place on the map updates the restaurant address field.
+
+lat: 51.512829, lng: -0.128001
+{ lat: 51.512829, lng: -0.128001 }
+
+Rest card no info added should send error and not let it submit. 
+
+address is not updating.

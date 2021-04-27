@@ -1,151 +1,105 @@
 <template>
   <v-card class="mx-auto my-12" max-width="374">
-    <template slot="progress">
-      <v-progress-linear
-        color="deep-purple"
-        height="10"
-        indeterminate
-      ></v-progress-linear>
-    </template>
-
-    <v-img
-      height="250"
-      src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-    ></v-img>
-    <!-- <v-list-item-content v-for="(review, index) in reviews" :key="index"> -->
-    <v-card-title>{{ details.name }}</v-card-title>
-    <!-- </v-list-item-content> -->
+    <StreetView :lat="restaurant.lat" :lng="restaurant.lng" />
+    <v-card-title>{{ restaurant.name }}</v-card-title>
     <v-card-text>
       <v-row align="center" class="mx-0">
         <v-rating
-          :value="4.5"
+          :value="restaurant.rating"
           color="amber"
           dense
           half-increments
           readonly
           size="14"
         ></v-rating>
-
-        <div class="grey--text ml-4">4.5 (413)</div>
+        <div class="grey--text ml-4">{{ restaurant.rating }}</div>
+        <div v-if="restaurant.ratings" class="grey--text ml-4">
+          ({{ restaurant.ratings.length }})
+        </div>
       </v-row>
-
-      <!-- <div class="my-4 subtitle-1">{{ restaurant.address }}</div> -->
-      <!-- <div class="my-4 subtitle-1">{{ googleAddress }}</div> -->
-      <div class="my-4 subtitle-1">{{ details.formatted_address }}</div>
-      <div class="my-4 subtitle-1">{{ details.formatted_phone_number }}</div>
+      <div class="my-4 subtitle-1">{{ restaurant.address }}</div>
     </v-card-text>
     <v-card-text>
       <div class="my-4 subtitle-1"><h2>Reviews</h2></div>
 
-      <div v-for="(rating, place_id) in reviews" :key="place_id">
-        <!-- <div v-for="(value, name) in info" :key="name">
-          {{ name }}: {{ value }}
-        </div> -->
-        <b
-          ><u>{{ rating.author_name }}:</u></b
-        >{{ rating.rating }}-{{ rating.text }}
+      <div v-for="(restaurant, place_id) in restaurant.ratings" :key="place_id">
+        <b>
+          <u>{{ restaurant.userName }} </u>
+        </b>
+        Rating:{{ restaurant.stars }}- Comments {{ restaurant.comment }}
       </div>
     </v-card-text>
-    <!-- <v-card-title>{{ reviews[0].rating }}</v-card-title> -->
-
     <v-divider class="mx-4"></v-divider>
 
     <v-card-title>Leave a Review</v-card-title>
+    <v-form>
+      <v-card-text>
+        <v-text-field v-model="name" required label="Name"></v-text-field>
+        <v-col cols="12">
+          <v-text-field
+            type="number"
+            step="any"
+            min="1"
+            max="5"
+            v-model="stars"
+            label="stars"
+          ></v-text-field>
+          <v-text-field
+            v-model="comment"
+            label="Leave a comment"
+          ></v-text-field>
+        </v-col>
 
-    <v-card-text>
-      <v-text-field v-model="name" label="Name"></v-text-field>
-      <v-col cols="12">
-        <v-text-field
-          type="number"
-          step="any"
-          v-model="stars"
-          label="stars"
-        ></v-text-field>
-        <v-text-field v-model="comment" label="Leave a comment"></v-text-field>
-      </v-col>
-      <!-- <v-chip-group
-        v-model="selection"
-        active-class="deep-purple accent-4 white--text"
-        column
-      >
-        <v-chip>5:30PM</v-chip>
-
-        <v-chip>7:30PM</v-chip>
-
-        <v-chip>8:00PM</v-chip>
-
-        <v-chip>9:00PM</v-chip>
-      </v-chip-group> -->
-      <v-card-actions>
-        <v-btn color="deep-purple lighten-2" text @click="updateComment()">
-          Save
-        </v-btn>
-      </v-card-actions>
-    </v-card-text>
+        <v-card-actions>
+          <v-btn color="deep darken-1" text @click="$emit('closeWindow')">
+            Close
+          </v-btn>
+          <v-btn color="deep darken-1" text @click="updateComment()">
+            Save
+          </v-btn>
+        </v-card-actions>
+      </v-card-text>
+    </v-form>
   </v-card>
 </template>
 
 <script>
+import StreetView from "./streetView";
+
 export default {
+  components: {
+    StreetView,
+  },
   data: () => ({
-    loading: false,
-    selection: 0,
+    dialog: false,
     comment: "",
     stars: null,
     name: "",
   }),
   props: {
-    details: {
-      type: [Object],
-      default() {
-        return {};
-      },
-    },
-
-    // name: {
-    //   type: [Object, String],
-    //   default: {},
-    // },
-    address: {
-      type: [Object, String],
-      default() {
-        return {};
-      },
-    },
-    ratings: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
     restaurant: {
       type: Object,
       default() {
         return {};
       },
     },
-    reviews: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
   },
+
   methods: {
+    closeModal() {
+      this.$emit("closeWindow");
+    },
+
     updateComment() {
       this.$emit("update", {
-        rating: this.stars,
-        text: this.comment,
-        author_name: this.name,
+        stars: this.stars,
+        comment: this.comment,
+        userName: this.name,
       });
       this.stars = null;
       this.comment = null;
       this.name = null;
     },
-
-    // Getdetails( ) from google, reviews ratings etc....
-    //call the function get details on click of this.currentRestaurant,
-    // this.currentRestaurant then = to the result of getdetails to populate that field
   },
 };
 </script>
