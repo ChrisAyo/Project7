@@ -92,10 +92,6 @@ export default {
       map: null,
       placesService: null,
       geometry: null,
-      location: {
-        lat: 0,
-        lng: 0,
-      },
     };
   },
 
@@ -133,10 +129,7 @@ export default {
         console.log("Geolocation is not supported by this browser");
       }
     },
-    showPosition(position) {
-      this.location.lat = position.coords.latitude;
-      this.location.lng = position.coords.longitude;
-    },
+
     removeMarkers() {
       for (let i = 0; i < this.markers.length; i++) {
         this.markers[i].setMap(null);
