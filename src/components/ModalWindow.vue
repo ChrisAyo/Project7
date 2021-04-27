@@ -64,10 +64,8 @@ export default {
     dialog: false,
     restaurantName: "",
     address: "",
-    location: null,
     lat: null,
     lng: null,
-    pointer: [],
     markers: [],
     rating: 0.0,
     google: null,
@@ -85,7 +83,6 @@ export default {
         address: this.address,
         rating: 3,
       });
-      console.log(this.restaurantName);
       this.restaurantName = null;
       this.lat = null;
       this.lng = null;
@@ -104,8 +101,4 @@ export default {
   },
 };
 </script>
- <style >
-/* .fill-height {
-  height: calc(100vh - 52px);
-} */
-</style>
+

@@ -28,7 +28,7 @@
             <GoogleMapInfoWindow
               :google="google"
               :map="map"
-              :content="restaurant.restaurantName"
+              :content="restaurant.name"
               :key="restaurant.lat"
             >
               <template slot-scope="{ infoWindow }">
@@ -84,7 +84,6 @@ export default {
       currentPosition: null,
       minValue: 1,
       maxValue: 5,
-
       currentAddress: "",
       currentReviews: [],
       localRestaurants: jsonRestaurants,
@@ -92,7 +91,6 @@ export default {
       markers: [],
       restaurantName: "",
       dialog: false,
-
       currentRestaurant: null,
       google: null,
       map: null,

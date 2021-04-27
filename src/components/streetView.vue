@@ -3,7 +3,6 @@
     <v-img height="250" :src="apiSource"> </v-img>
   </div>
 </template>
-
 <script>
 export default {
   data: () => ({}),

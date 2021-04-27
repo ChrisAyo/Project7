@@ -31,7 +31,6 @@ export default {
     };
   },
 
-  // async mounted when is this run??
   async mounted() {
     if (!this.google && !this.map) {
       const googleMapApi = await GoogleMapsApiLoader({

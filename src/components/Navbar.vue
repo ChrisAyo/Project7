@@ -1,5 +1,4 @@
 <template>
-  <!-- <v-app> -->
   <div>
     <v-app-bar clipped-right app color="indigo" dark>
       <v-toolbar-title class="white--text">
@@ -50,16 +49,11 @@ export default {
   },
   data: () => ({
     drawer: true,
-    show: false,
-    selected: false,
-    selection: null,
-    plan: null,
     selectedReview: null,
   }),
 
   props: {
     restaurants: {
-      // is reviews accesible globally ??
       type: Array,
       default() {
         return [];
@@ -71,20 +65,13 @@ export default {
     showInfo(restaurant) {
       this.$emit("select", restaurant);
     },
-
     sliderChange(range) {
       this.$emit("rating", range);
-      // this.$emit("slider", range);
     },
-
     newRestCreated(restInfomartion) {
       this.$emit("newRestSubmit", restInfomartion);
     },
   },
-
-  // Getdetails( ) from google, reviews ratings etc....
-  //call the function get details on click of this.currentRestaurant,
-  // this.currentRestaurant then = to the result of getdetails to populate that field
 };
 </script>
 <style >
