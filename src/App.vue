@@ -48,8 +48,6 @@
           <RestCard
             @update="addComments"
             :restaurant="currentRestaurant"
-            :reviews="currentReviews"
-            :googleAddress="currentAddress"
             @closeWindow="closeModal"
           />
         </v-dialog>
@@ -85,11 +83,9 @@ export default {
       minValue: 1,
       maxValue: 5,
       currentAddress: "",
-      currentReviews: [],
       localRestaurants: jsonRestaurants,
       googleRestaurants: [],
       markers: [],
-      restaurantName: "",
       dialog: false,
       currentRestaurant: null,
       google: null,
@@ -111,6 +107,7 @@ export default {
           timeout: 5000,
           maximumAge: 0,
         };
+        //beacuse of scoping self = this so it can find it
         const self = this;
         function success(pos) {
           var crd = pos.coords;
@@ -147,7 +144,7 @@ export default {
       this.markers = [];
     },
     mapLoaded({ google, map, placesService, geometry }) {
-      //when the map is idle run nearbySearch for new location, (Event Listner)
+      //when the map is idle nearbySearch is run
       this.google = google;
       this.map = map;
       this.placesService = placesService;
@@ -168,7 +165,7 @@ export default {
       });
     },
 
-    nearbySearchCallback(results, status) {
+    nearbySearchCallback(results) {
       for (var i = 0; i < results.length; i++) {
         const restaurant = results[i];
         // add marker array in data this.markers.push marker so the markers can be used and cleared.
@@ -188,7 +185,6 @@ export default {
     },
     chosen(payload) {
       this.currentAddress = "";
-      this.currentReviews = [];
       this.currentRestaurant = payload;
       this.dialog = true;
       if (!this.currentRestaurant.ratings) {
@@ -201,7 +197,6 @@ export default {
             "geometry",
             "reviews",
             "rating",
-            "formatted_phone_number",
           ],
         };
 
@@ -255,7 +250,6 @@ export default {
       let totalSum = 0;
       for (let i = 0; i < this.currentRestaurant.ratings.length; i++) {
         totalSum = parseInt(this.currentRestaurant.ratings[i].stars) + totalSum;
-        console.log(totalSum);
       }
       //Ratings Calculations
       this.currentRestaurant.rating = Math.floor(
