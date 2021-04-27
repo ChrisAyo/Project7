@@ -219,6 +219,7 @@ export default {
         });
       }
     },
+
     createReviews(reviews) {
       const result = [];
       for (let i = 0; i < reviews.length; i++) {
@@ -258,19 +259,15 @@ export default {
         totalSum = parseInt(this.currentRestaurant.ratings[i].stars) + totalSum;
         console.log(totalSum);
       }
-
+      //Ratings Calculations
       this.currentRestaurant.rating = Math.floor(
         totalSum / this.currentRestaurant.ratings.length
       );
-      // this.dialog = false;
-      // this.currentReviews.push(payload);
-      // use the rating number to create a new average rating and set it to this.current/restaurant.rating what it is actively looking at.
     },
 
     filterRating(payload) {
       this.minValue = payload[0];
       this.maxValue = payload[1];
-      console.log(this.minValue, this.maxValue);
     },
     closeModal() {
       this.dialog = false;
