@@ -34,8 +34,8 @@
     <v-card-title>Leave a Review</v-card-title>
     <v-form>
       <v-card-text>
-        <v-text-field v-model="name" required label="Name"></v-text-field>
         <v-col cols="12">
+          <v-text-field v-model="name" required label="Name"></v-text-field>
           <v-text-field
             type="number"
             step="any"

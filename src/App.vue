@@ -180,6 +180,7 @@ export default {
       this.currentAddress = "";
       this.currentRestaurant = payload;
       this.dialog = true;
+      //only run the below if there are no ratings
       if (!this.currentRestaurant.ratings) {
         const request = {
           placeId: payload.place_id,
