@@ -2,7 +2,6 @@
   <v-app>
     <Navbar
       :restaurants="googleRestaurants"
-      :details="currentDetails"
       @select="chosen"
       :google="google"
       :map="map"
