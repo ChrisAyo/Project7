@@ -25,7 +25,6 @@ export default {
       return `https://maps.googleapis.com/maps/api/streetview?location=${this.lat},${this.lng}&size=456x456&key=AIzaSyAWCeHVGAhiySpUN9nKx7hV-b1yRL-QtMk`;
     },
   },
-  methods: {},
 };
 </script>
 

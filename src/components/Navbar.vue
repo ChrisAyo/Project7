@@ -49,7 +49,6 @@ export default {
   },
   data: () => ({
     drawer: true,
-    selectedReview: null,
   }),
 
   props: {
