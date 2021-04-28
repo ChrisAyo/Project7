@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <Navbar
-      :restaurants="googleRestaurants"
+      :restaurants="restaurants"
       @select="chosen"
       :google="google"
       :map="map"
