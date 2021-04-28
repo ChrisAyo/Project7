@@ -72,6 +72,7 @@ export default {
     map: null,
     geometry: null,
     placesService: null,
+    ratings: [],
   }),
 
   methods: {
@@ -82,6 +83,7 @@ export default {
         lng: parseFloat(this.lng),
         address: this.address,
         rating: 3,
+        ratings: [],
       });
       this.restaurantName = null;
       this.lat = null;
