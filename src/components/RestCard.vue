@@ -24,9 +24,9 @@
 
       <div v-for="(restaurant, place_id) in restaurant.ratings" :key="place_id">
         <b>
-          <u>{{ restaurant.userName }} </u>
+          <u>{{ restaurant.userName }}</u>
         </b>
-        Rating:{{ restaurant.stars }}- Comments {{ restaurant.comment }}
+        Rating:{{ restaurant.stars }}- Comments: {{ restaurant.comment }}
       </div>
     </v-card-text>
     <v-divider class="mx-4"></v-divider>
